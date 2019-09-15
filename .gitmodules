@@ -1,0 +1,3 @@
+[submodule "conference/themes/devfest-theme-hugo"]
+	path = conference/themes/devfest-theme-hugo
+	url = https://github.com/GDGToulouse/devfest-theme-hugo.git

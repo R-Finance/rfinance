@@ -1,0 +1,17 @@
+<html>
+  <body>
+    <h2>{{ .Title }}</h2>
+    <h3>{{ .Params.subtitle }}</h2>
+
+    {{ range $section := .Params.sections }}
+      <div>
+        <h1>{{ $section.title }}</h1>
+        <p>{{ $section.body }}</p>
+      </div>
+    {{ end }}
+<!--
+    {{ .Content }}
+-->
+
+  </body>
+</html>

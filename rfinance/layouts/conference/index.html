@@ -1,0 +1,35 @@
+<html>
+{{ partial "header.html" . }}
+
+<section name="conference">
+  
+  <h3>Conference Details</h3>
+  <section name="sponsor_block">
+    <h2>Sponsers</h2>
+  </section>
+  <section name="keynotes">
+    <h2>Keynotes</h2>
+  </section>
+  <section name="workshops">
+     <h2>Workshops</h2>
+  </section>
+  <section name="agenda">
+     <h2>Agenda</h2>
+  </section>
+  <section name="speakers">
+     <h2>Speakers</h2>
+  </section>
+</section>
+
+<section>
+<p>Previous Conferences</p>
+{{ range $yr := .Params.confyears }}
+  <ul><a href="{{ $yr }}">{{ $yr }}</a></ul>
+{{ end }}
+{{ range .Pages }}
+  <b>{{ .Title }}</b>
+{{ end }}
+</section>
+
+{{ partial "footer" . }}
+</html>
