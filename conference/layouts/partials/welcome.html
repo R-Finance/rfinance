@@ -1,0 +1,11 @@
+{{ "<!-- Welcome -->" | safeHTML }}
+<section class="bar background-white">
+  <div class="container">
+    <div class="intro-text">
+      <div class="intro-heading heading">
+        <h1 class="intro-heading heading">{{ .Site.Params.welcome.title }}</h1>
+      </div>
+      {{ .Content }}
+    </div>
+  </div>
+</section>

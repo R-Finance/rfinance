@@ -4,5 +4,8 @@ title = "R/Finance Conference"
 
 theme = ["hugo-rfinance-theme", "hugo-universal-theme"]
 
+[params.welcome]
+    title = "Applied Finance with R"
+
 [params.features]
     enable = true
