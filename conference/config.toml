@@ -29,3 +29,6 @@ theme = ["hugo-rfinance-theme", "hugo-universal-theme"]
 
 [params.committee]
     enable_footer = true
+
+[params]
+    style = "blue"
