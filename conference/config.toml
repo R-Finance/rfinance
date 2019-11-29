@@ -2,7 +2,7 @@ baseURL = "http://example.org/"
 languageCode = "en-us"
 title = "R/Finance Conference"
 
-theme = "hugo-universal-theme"
+theme = ["hugo-rfinance-theme", "hugo-universal-theme"]
 
 [params.features]
     enable = true
