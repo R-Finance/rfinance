@@ -26,3 +26,6 @@ theme = ["hugo-rfinance-theme", "hugo-universal-theme"]
 
 [params.features]
     enable = true
+
+[params.committee]
+    enable_footer = true
