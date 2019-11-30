@@ -1,0 +1,22 @@
+{{ "<!-- Archive -->" | safeHTML }}
+<html lang="{{ .Site.LanguageCode }}">
+
+  {{ partial "head.html" . }}
+
+  <body>
+    <div id="all">
+        <header>
+          {{ partial "nav.html" . }}
+        </header>
+
+      <div class="container">
+          {{ .Content }}
+      </div>
+
+    </div>
+    <!-- /#all -->
+
+    {{ partial "scripts.html" . }}
+
+  </body>
+</html>

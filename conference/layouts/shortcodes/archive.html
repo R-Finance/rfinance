@@ -1,0 +1,19 @@
+{{ with .Get "id" }}
+<div class="container" role="main">
+  <div class="row">
+    <!-- https://benmarshall.me/responsive-iframes/ -->
+    <div overflow: hidden; padding-top: 56.25%; position: relative>
+      <iframe
+        src="{{ . }}"
+        border=0
+        height=100%
+        width=100%
+        top=0
+        left=0
+        position=absolute
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</div>
+{{ end }}
