@@ -10,16 +10,22 @@ theme = ["hugo-rfinance-theme", "hugo-universal-theme"]
     weight = 1
 
 [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url  = "/about/"
+    weight = 2
+
+[[menu.main]]
     identifier = "cfp"
     name = "CFP"
     url  = "/cfp/"
-    weight = 2
+    weight = 3
 
 [[menu.main]]
     identifier = "sponsorship"
     name = "Sponsors"
     url  = "/sponsors/"
-    weight = 3
+    weight = 4
 
 [params.welcome]
     title = "Applied Finance with R"
