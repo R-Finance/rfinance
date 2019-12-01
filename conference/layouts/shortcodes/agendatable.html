@@ -1,0 +1,23 @@
+<!--
+  https://gohugo.io/templates/data-templates/#example-for-csv-files
+-->
+<table class="table-condensed">
+  <caption><font size=+3>{{ .Get "day" }}</font></caption>
+  <tbody>
+    {{ $url := .Get "file" }}
+    {{ $sep := "," }}
+    {{ range $i, $r := getCSV $sep $url }}
+    <tr>
+      {{ if gt (len (index $r 0)) 0 }}
+      <td style="min-width: 100px; white-space: nowrap;">{{ index $r 0 }} - {{ index $r 2 }}</td>
+      {{ else }}
+      <td></td>
+      {{ end }}
+      <td>
+        <font rf-data-type="{{ index $r 3 }}" class="rf-talk-type">{{ index $r 5 }}</font>
+        <font>{{ index $r 6 }}</font>
+      </td>
+    </tr>
+    {{ end }}
+  </tbody>
+</table>
