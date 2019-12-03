@@ -2,137 +2,137 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>R/Finance Conference</title>
-    <link>http://www.rinfinance.com/</link>
+    <link>https://r-finance.github.io/</link>
     <description>Recent content on R/Finance Conference</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="http://www.rinfinance.com/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://r-finance.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title></title>
-      <link>http://www.rinfinance.com/archive/2009/</link>
+      <link>https://r-finance.github.io/archive/2009/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.rinfinance.com/archive/2009/</guid>
+      <guid>https://r-finance.github.io/archive/2009/</guid>
       <description>     </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://www.rinfinance.com/archive/2010/</link>
+      <link>https://r-finance.github.io/archive/2010/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.rinfinance.com/archive/2010/</guid>
+      <guid>https://r-finance.github.io/archive/2010/</guid>
       <description>     </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://www.rinfinance.com/archive/2011/</link>
+      <link>https://r-finance.github.io/archive/2011/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.rinfinance.com/archive/2011/</guid>
+      <guid>https://r-finance.github.io/archive/2011/</guid>
       <description>     </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://www.rinfinance.com/archive/2012/</link>
+      <link>https://r-finance.github.io/archive/2012/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.rinfinance.com/archive/2012/</guid>
+      <guid>https://r-finance.github.io/archive/2012/</guid>
       <description>     </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://www.rinfinance.com/archive/2013/</link>
+      <link>https://r-finance.github.io/archive/2013/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.rinfinance.com/archive/2013/</guid>
+      <guid>https://r-finance.github.io/archive/2013/</guid>
       <description>     </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://www.rinfinance.com/archive/2014/</link>
+      <link>https://r-finance.github.io/archive/2014/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.rinfinance.com/archive/2014/</guid>
+      <guid>https://r-finance.github.io/archive/2014/</guid>
       <description>     </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://www.rinfinance.com/archive/2015/</link>
+      <link>https://r-finance.github.io/archive/2015/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.rinfinance.com/archive/2015/</guid>
+      <guid>https://r-finance.github.io/archive/2015/</guid>
       <description>     </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://www.rinfinance.com/archive/2016/</link>
+      <link>https://r-finance.github.io/archive/2016/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.rinfinance.com/archive/2016/</guid>
+      <guid>https://r-finance.github.io/archive/2016/</guid>
       <description>     </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://www.rinfinance.com/archive/2017/</link>
+      <link>https://r-finance.github.io/archive/2017/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.rinfinance.com/archive/2017/</guid>
+      <guid>https://r-finance.github.io/archive/2017/</guid>
       <description>     </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://www.rinfinance.com/archive/2018/</link>
+      <link>https://r-finance.github.io/archive/2018/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.rinfinance.com/archive/2018/</guid>
+      <guid>https://r-finance.github.io/archive/2018/</guid>
       <description>     </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://www.rinfinance.com/archive/2019/</link>
+      <link>https://r-finance.github.io/archive/2019/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.rinfinance.com/archive/2019/</guid>
+      <guid>https://r-finance.github.io/archive/2019/</guid>
       <description>Friday, May 17th, 2019   08:00 - 09:00  Kris Boudt Multivariate GARCH models in R      Dirk Eddelbuettel Rcpp: From Simple Examples to Machine Learning      R. D. Martin, A. Christidis Standard Errors for Risk and Performance Estimators      Dale Rosenthal The Dark Arts of Selecting and Diagnosing Models      Justin Shea Introduction to Quantitative Finance with R: Best Practices      M.</description>
     </item>
     
     <item>
       <title>About R/Finance</title>
-      <link>http://www.rinfinance.com/about/</link>
+      <link>https://r-finance.github.io/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.rinfinance.com/about/</guid>
+      <guid>https://r-finance.github.io/about/</guid>
       <description>Conference Founded in the fall of 2008 by a small group of open-source authors and finance practitioners, the inaugural conference took place in April 2009. Twelve years later we are getting ready for the best conference yet&amp;ndash; R/Finance 2020. Over the years we&#39;ve seen nearly 400 presentations, covering nearly all facets of finance, software and statistics. We&#39;ve built a reputation as one of the pre-eminent networking events for quantitative finance in the world.</description>
     </item>
     
     <item>
       <title>Call for Presentations</title>
-      <link>http://www.rinfinance.com/cfp/</link>
+      <link>https://r-finance.github.io/cfp/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.rinfinance.com/cfp/</guid>
+      <guid>https://r-finance.github.io/cfp/</guid>
       <description>The twelfth annual R/Finance conference for applied finance using R will be held on June 5 and 6, 2020 in Chicago, IL, USA at the University of Illinois at Chicago. The conference will cover topics including portfolio management, time series analysis, advanced risk tools, high-performance computing, market microstructure, and econometrics. All will be discussed within the context of using R as a primary tool for financial model development, risk management, portfolio construction, and trading.</description>
     </item>
     
     <item>
       <title>Sponsorship</title>
-      <link>http://www.rinfinance.com/sponsors/</link>
+      <link>https://r-finance.github.io/sponsors/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.rinfinance.com/sponsors/</guid>
+      <guid>https://r-finance.github.io/sponsors/</guid>
       <description>Opportunities Sponsorships ranging from $5,000 to $10,000 brand you as a leader in the rapidly growing finance statistical computing and graphics field and support the premier international learning and networking convening for the R software community.
 Sponsor Incentives Branding Opportunities   Web Banner Advertising: Top level branding begins as early as January continuing for up to 12 months on the http://www.rinfinance.com/ website. The rendering of the logos is dynamic and uses standard Twitter Bootstrap (a CSS//Javascript framework) which produces a grid of cell 12 cells, approximately 900 pixels.</description>
     </item>
