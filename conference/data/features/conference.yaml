@@ -1,5 +1,5 @@
 weight: 2
 name: "Conference"
-icon: ""
+icon: "fas fa-bezier-curve"
 url: ""
 description: "The conference itself consists of reviewed full-length presentations as well as a number of shorter, highly-energetic lightning talks."
