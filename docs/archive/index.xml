@@ -1,111 +1,111 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Archives on R/Finance Conference</title>
-    <link>http://localhost:35015/archive/</link>
+    <link>http://www.rinfinance.com/archive/</link>
     <description>Recent content in Archives on R/Finance Conference</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="http://localhost:35015/archive/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://www.rinfinance.com/archive/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title></title>
-      <link>http://localhost:35015/archive/2009/</link>
+      <link>http://www.rinfinance.com/archive/2009/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:35015/archive/2009/</guid>
+      <guid>http://www.rinfinance.com/archive/2009/</guid>
       <description>     </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://localhost:35015/archive/2010/</link>
+      <link>http://www.rinfinance.com/archive/2010/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:35015/archive/2010/</guid>
+      <guid>http://www.rinfinance.com/archive/2010/</guid>
       <description>     </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://localhost:35015/archive/2011/</link>
+      <link>http://www.rinfinance.com/archive/2011/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:35015/archive/2011/</guid>
+      <guid>http://www.rinfinance.com/archive/2011/</guid>
       <description>     </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://localhost:35015/archive/2012/</link>
+      <link>http://www.rinfinance.com/archive/2012/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:35015/archive/2012/</guid>
+      <guid>http://www.rinfinance.com/archive/2012/</guid>
       <description>     </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://localhost:35015/archive/2013/</link>
+      <link>http://www.rinfinance.com/archive/2013/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:35015/archive/2013/</guid>
+      <guid>http://www.rinfinance.com/archive/2013/</guid>
       <description>     </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://localhost:35015/archive/2014/</link>
+      <link>http://www.rinfinance.com/archive/2014/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:35015/archive/2014/</guid>
+      <guid>http://www.rinfinance.com/archive/2014/</guid>
       <description>     </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://localhost:35015/archive/2015/</link>
+      <link>http://www.rinfinance.com/archive/2015/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:35015/archive/2015/</guid>
+      <guid>http://www.rinfinance.com/archive/2015/</guid>
       <description>     </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://localhost:35015/archive/2016/</link>
+      <link>http://www.rinfinance.com/archive/2016/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:35015/archive/2016/</guid>
+      <guid>http://www.rinfinance.com/archive/2016/</guid>
       <description>     </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://localhost:35015/archive/2017/</link>
+      <link>http://www.rinfinance.com/archive/2017/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:35015/archive/2017/</guid>
+      <guid>http://www.rinfinance.com/archive/2017/</guid>
       <description>     </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://localhost:35015/archive/2018/</link>
+      <link>http://www.rinfinance.com/archive/2018/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:35015/archive/2018/</guid>
+      <guid>http://www.rinfinance.com/archive/2018/</guid>
       <description>     </description>
     </item>
     
     <item>
       <title></title>
-      <link>http://localhost:35015/archive/2019/</link>
+      <link>http://www.rinfinance.com/archive/2019/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:35015/archive/2019/</guid>
+      <guid>http://www.rinfinance.com/archive/2019/</guid>
       <description>Friday, May 17th, 2019   08:00 - 09:00  Kris Boudt Multivariate GARCH models in R      Dirk Eddelbuettel Rcpp: From Simple Examples to Machine Learning      R. D. Martin, A. Christidis Standard Errors for Risk and Performance Estimators      Dale Rosenthal The Dark Arts of Selecting and Diagnosing Models      Justin Shea Introduction to Quantitative Finance with R: Best Practices      M.</description>
     </item>
     
