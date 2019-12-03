@@ -1,4 +1,4 @@
-baseURL = "https://r-finance.github.io/rfinance/"
+baseURL = "http://www.rinfinance.com/"
 languageCode = "en-us"
 title = "R/Finance Conference"
 publishDir = "../docs"
