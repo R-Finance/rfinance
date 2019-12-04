@@ -18,7 +18,7 @@ git submodule update
 
 ```
 cd rfinance/    # the top-level of the repo
-hugo server -D
+hugo server -D --destination docs
 ```
 
 # repo layout
@@ -62,5 +62,4 @@ your changes public.
 The Hugo docs may be useful if we want to do something more fancy in the
 future: https://gohugo.io/hosting-and-deployment/
 
-# AWS Amplify - possibly can use for storage as well
-https://aws.amazon.com/amplify/console/getting-started/?nc=sn&loc=3
+AWS Amplify - possibly can use for storage as well: https://aws.amazon.com/amplify/console/getting-started/?nc=sn&loc=3
