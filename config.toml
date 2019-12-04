@@ -1,7 +1,7 @@
 baseURL = "http://www.rinfinance.com/"
 languageCode = "en-us"
 title = "R/Finance Conference"
-publishDir = "../docs"
+publishDir = "docs"
 
 theme = ["hugo-rfinance-theme", "hugo-universal-theme"]
 
