@@ -17,8 +17,8 @@ git submodule update
 * run locally using the commands below
 
 ```
-cd rfinance/                                                        # the top-level of the repo
-hugo -D --destination docs --baseURL="https://www.rinfinance.com/"  # or use ./buildMe.sh
+cd rfinance/     # the top-level of the repo
+hugo -D          # -D for draft pages (if there are any), or use ./buildMe.sh
 ```
 
 # repo layout
