@@ -17,8 +17,8 @@ git submodule update
 * run locally using the commands below
 
 ```
-cd rfinance/    # the top-level of the repo
-hugo server -D
+cd rfinance/     # the top-level of the repo
+hugo -D          # -D for draft pages (if there are any), or use ./buildMe.sh
 ```
 
 # repo layout
@@ -62,5 +62,4 @@ your changes public.
 The Hugo docs may be useful if we want to do something more fancy in the
 future: https://gohugo.io/hosting-and-deployment/
 
-# AWS Amplify - possibly can use for storage as well
-https://aws.amazon.com/amplify/console/getting-started/?nc=sn&loc=3
+AWS Amplify - possibly can use for storage as well: https://aws.amazon.com/amplify/console/getting-started/?nc=sn&loc=3

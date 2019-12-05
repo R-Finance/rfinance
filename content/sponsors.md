@@ -16,9 +16,9 @@ community.
 
 * Web Banner Advertising: Top level branding begins as early as January
 continuing for up to 12 months on the http://www.rinfinance.com/ website.
-The rendering of the logos is dynamic and uses standard Twitter Bootstrap
-(a CSS//Javascript framework) which produces a grid of cell 12 cells,
-approximately 900 pixels. 5k sponsors get two cells; 10k sponsors get 4 cells.
+The rendering of the logos is dynamic and uses standard CSS grids, typically
+with 12 cells (or approximately 900 pixels); 5k sponsors get two cells, and
+10k sponsors get 4 cells.
 
 * Conference Registration website:
 
@@ -43,6 +43,3 @@ approximately 900 pixels. 5k sponsors get two cells; 10k sponsors get 4 cells.
 registrations; 10k sponsors get three registrations.
 * Invitations to special keynote dinner. 5k sponsors get two invitations;
 10k sponsors get three invitations.
-* Complimentary tickets to the Wyndham Reception (note space is limited, this
-option must be selected at time of registration). 5k sponsors get two tickets;
-10k sponsors get three tickets.

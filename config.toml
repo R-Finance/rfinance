@@ -1,4 +1,4 @@
-baseURL = "http://www.rinfinance.com/"
+baseURL = "https://www.rinfinance.com/"
 languageCode = "en-us"
 title = "R/Finance Conference"
 publishDir = "docs"
