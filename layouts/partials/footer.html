@@ -3,14 +3,13 @@
 
         {{ if isset .Site.Params "committee" }}
         {{ if .Site.Params.committee.enable_footer }}
-        <div class="col-md-4 col-sm-6">
+        <div class="col-md-12 col-sm-6">
             <h4>Committee</h4>
             {{ if gt (len .Site.Data.committee) 0 }}
                 {{ range $index, $element := sort .Site.Data.committee "weight" }}
                     {{ with $element }}
-                    <a href="{{ .url }}" target="_blank">{{ .name }}</a>
+                    <a href="{{ .url }}" target="_blank">{{ .name }}</a> &nbsp; &nbsp; 
                     {{ end }}
-                    </br>
                 {{ end }}
             {{ end }}
 
