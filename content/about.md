@@ -24,7 +24,7 @@ gathered in Chicago each Spring to exchange ideas and laughs. Collaborations
 have been born here that have lasted more than a decade. New packages, new
 research, new friendships define what is R/Finance.
 
-Ryan, Eddebuettel, Carl, Peterson, Boudt, Ulrich, Pfaff, Zivot, Martin, Basset, ...
+Ryan, Eddebuettel, Carl, Peterson, Boudt, Ulrich, Pfaff, Zivot, Martin, Bassett, ...
 
 ## R Code
 
