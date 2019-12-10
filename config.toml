@@ -28,6 +28,12 @@ theme = ["hugo-rfinance-theme", "hugo-universal-theme"]
     url  = "/sponsors/"
     weight = 4
 
+[[menu.main]]
+    identifier = "coc"
+    name = "Code of Conduct"
+    url  = "/coc/"
+    weight = 5
+
 [params.welcome]
     title = "Applied Finance with R"
 
