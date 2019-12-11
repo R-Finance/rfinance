@@ -18,7 +18,7 @@ theme = ["hugo-rfinance-theme", "hugo-universal-theme"]
 
 [[menu.main]]
     identifier = "cfp"
-    name = "CFP"
+    name = "Call for Papers"
     url  = "/cfp/"
     weight = 3
 
