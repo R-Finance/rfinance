@@ -34,6 +34,12 @@ theme = ["hugo-rfinance-theme", "hugo-universal-theme"]
     url  = "/coc/"
     weight = 5
 
+[[menu.main]]
+    identifier = "diversity"
+    name = "Diversity"
+    url  = "/diversity/"
+    weight = 5
+
 [params.welcome]
     title = "Applied Finance with R"
 
