@@ -24,9 +24,10 @@ in the field, the format means you won't miss any of it!
 
 A leader in hosting high quality, meaningful conferences, the R/Finance model 
 has come to inspire other R organizers as well. Today, conferences intersecting 
-the R statistical programming language with medicine, insurance, and others, 
-are succeeding in bringing together highly skilled R programmers with experts in
-their respective fields.
+the R statistical programming language with [medicine](https://r-medicine.com/), 
+[insurance](https://insurancedatascience.org/), and others, are succeeding in 
+bringing together highly skilled R programmers with experts in their respective 
+fields.
 
 
 ## Community
