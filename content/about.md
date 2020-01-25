@@ -5,7 +5,7 @@ subtitle: "Applied Finance with R"
 
 R/Finance was founded in the fall of 2008, by a small group of open source 
 package authors, finance industry practitioners, and finance professors. Inspired by 
-popular workshops and summer schools about "R in Finance" held by Deithelm Wurts 
+popular workshops and summer schools about "R in Finance" held by Deithelm Wuerts 
 at Meielisalp in the Swiss mountains, the inaugural R/Finance conference took 
 place at the Chicago campus of the University of Illinois (UIC) in April 2009. 
 
@@ -63,7 +63,7 @@ Keynotes of R/Finance past include:
 [Dr. David Kane](https://www.davidkane.info/), 
 [Dr. Roger Koenker](http://www.econ.uiuc.edu/~roger/), 
 [Dr. David Ruppert](https://people.orie.cornell.edu/davidr/), 
-[Dr. Diethelm Wurtz](https://comp.phys.ethz.ch/news-and-events/nc/2016/08/in-memoriam-diethelm-wuertz.html), and [Dr. Eric Zivot](https://faculty.washington.edu/ezivot/). 
+[Dr. Diethelm Wuertz](https://comp.phys.ethz.ch/news-and-events/nc/2016/08/in-memoriam-diethelm-wuertz.html), and [Dr. Eric Zivot](https://faculty.washington.edu/ezivot/). 
 
 **2010:** [Dr. Achim Zeileis](https://eeecon.uibk.ac.at/~zeileis/), 
 [Ralph Vince](https://ralphvince.com/), [Dr. Bernhard Pfaff](https://www.linkedin.com/in/bernhard-pfaff-8337229/?originalSubdomain=de), 
