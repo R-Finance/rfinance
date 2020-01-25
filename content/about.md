@@ -3,9 +3,10 @@ title: "About R/Finance"
 subtitle: "Applied Finance with R"
 ---
 
+
 R/Finance was founded in the fall of 2008, by a small group of open source 
 package authors, finance industry practitioners, and finance professors. Inspired by 
-popular workshops and summer schools about "R in Finance" held by Diethelm Wuertz 
+popular workshops and summer schools about "R in Finance" held by Deithelm Wuerts 
 at Meielisalp in the Swiss mountains, the inaugural R/Finance conference took 
 place at the Chicago campus of the University of Illinois (UIC) in April 2009. 
 
