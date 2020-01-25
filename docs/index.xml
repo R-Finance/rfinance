@@ -115,13 +115,10 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://www.rinfinance.com/about/</guid>
-<<<<<<< HEAD
-      <description>R/Finance was founded in the fall of 2008, by a small group of open source package authors, finance industry practitioners, and finance professors. Inspired by popular workshops and summer schools about &amp;ldquo;R in Finance&amp;rdquo; held by Deithelm Wuerts at Meielisalp in the Swiss mountains, the inaugural R/Finance conference took place at the Chicago campus of the University of Illinois (UIC) in April 2009.
-From its humble beginning, R/Finance has maintained the single-track presentation model.</description>
-=======
+
       <description>Conference R/Finance was founded in the fall of 2008, by a small group of open-source authors, finance practitioners, and academics. Inspired by the annual gatherings of finance industry practitioners and academics hosted by the Deithelm Wurts, the inaugural R/Finance conference took place in April 2009 at the University of Illinois-Chicago.
 Attendees have enjoyed roughly 400 presentations, covering nearly all facets of finance, software development, and statistical programming with R. Consistent and excellent content has earned the conference a reputation as one of the most top events of the year in both R, quantitative finance, and the fields they intersect.</description>
->>>>>>> parent of 5351131... rebuild site, with hugo v0.57.2
+
     </item>
     
     <item>
