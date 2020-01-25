@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>R/Finance Conference</title>
@@ -115,8 +115,13 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://www.rinfinance.com/about/</guid>
+<<<<<<< HEAD
       <description>R/Finance was founded in the fall of 2008, by a small group of open source package authors, finance industry practitioners, and finance professors. Inspired by popular workshops and summer schools about &amp;ldquo;R in Finance&amp;rdquo; held by Deithelm Wuerts at Meielisalp in the Swiss mountains, the inaugural R/Finance conference took place at the Chicago campus of the University of Illinois (UIC) in April 2009.
 From its humble beginning, R/Finance has maintained the single-track presentation model.</description>
+=======
+      <description>Conference R/Finance was founded in the fall of 2008, by a small group of open-source authors, finance practitioners, and academics. Inspired by the annual gatherings of finance industry practitioners and academics hosted by the Deithelm Wurts, the inaugural R/Finance conference took place in April 2009 at the University of Illinois-Chicago.
+Attendees have enjoyed roughly 400 presentations, covering nearly all facets of finance, software development, and statistical programming with R. Consistent and excellent content has earned the conference a reputation as one of the most top events of the year in both R, quantitative finance, and the fields they intersect.</description>
+>>>>>>> parent of 5351131... rebuild site, with hugo v0.57.2
     </item>
     
     <item>
@@ -134,9 +139,9 @@ From its humble beginning, R/Finance has maintained the single-track presentatio
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://www.rinfinance.com/coc/</guid>
-      <description>Organizers, speakers, registered participants, and sponsors of the R/Finance conference (henceforth &amp;ldquo;Participants&amp;rdquo;) are bound by UIC&amp;rsquo;s code of conduct, its nondiscrimination policy, and its photography/video policy.
+      <description>Organizers, speakers, registered participants, and sponsors of the R/Finance conference (henceforth &amp;ldquo;Participants&amp;rdquo;) are bound by UIC&#39;s code of conduct, its nondiscrimination policy, and its photography/video policy.
 In the case of a violation, Participants may be removed from the premises (without refund or recourse), blocked from communication with the organization, and barred from future events. When relevant, the proper authorities or organizations will be informed of inappropriate behavior.
-Privacy Participants respect each other&amp;rsquo;s privacy.</description>
+Privacy Participants respect each other&#39;s privacy.</description>
     </item>
     
     <item>
@@ -156,7 +161,7 @@ Other than keynotes, all talks are given by people who respond to the Call for P
       
       <guid>https://www.rinfinance.com/sponsors/</guid>
       <description>Opportunities Sponsorships ranging from $5,000 to $10,000 brand you as a leader in the rapidly growing finance statistical computing and graphics field and support the premier international learning and networking convening for the R software community.
-Sponsor Incentives Branding Opportunities  Web Banner Advertising: Top level branding begins as early as January continuing for up to 12 months on the http://www.rinfinance.com/ website. The rendering of the logos is dynamic and uses standard CSS grids, typically with 12 cells (or approximately 900 pixels); 5k sponsors get two cells, and 10k sponsors get 4 cells.</description>
+Sponsor Incentives Branding Opportunities   Web Banner Advertising: Top level branding begins as early as January continuing for up to 12 months on the http://www.rinfinance.com/ website. The rendering of the logos is dynamic and uses standard CSS grids, typically with 12 cells (or approximately 900 pixels); 5k sponsors get two cells, and 10k sponsors get 4 cells.</description>
     </item>
     
   </channel>
