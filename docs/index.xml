@@ -115,7 +115,10 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://www.rinfinance.com/about/</guid>
-      <description>Conference Founded in the fall of 2008 by a small group of open-source authors and finance practitioners, the inaugural conference took place in April 2009. Twelve years later we are getting ready for the best conference yet&amp;ndash; R/Finance 2020. Over the years we&amp;rsquo;ve seen nearly 400 presentations, covering nearly all facets of finance, software and statistics. We&amp;rsquo;ve built a reputation as one of the pre-eminent networking events for quantitative finance in the world.</description>
+
+      <description>R/Finance was founded in the fall of 2008, by a small group of open source package authors, finance industry practitioners, and finance professors. Inspired by popular workshops and summer schools about &amp;ldquo;R in Finance&amp;rdquo; held by Diethelm Wuerts at Meielisalp in the Swiss mountains, the inaugural R/Finance conference took place at the Chicago campus of the University of Illinois (UIC) in April 2009.
+
+From its humble beginning, R/Finance has maintained the single-track presentation model.</description>
     </item>
     
     <item>
@@ -144,7 +147,9 @@ Privacy Participants respect each other&amp;rsquo;s privacy.</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://www.rinfinance.com/diversity/</guid>
+
       <description>The lack of diversity in the fields of Statistical Programming and Software Development are well known. So too, is the general case in Finance. As Quantitative Finance lives at this intersection, R/Finance would like to be part of the solution. Thus, we want to take this opportunity to invite All Persons to join us in learning and contributing to these exciting and innovative areas of study.
+
 Other than keynotes, all talks are given by people who respond to the Call for Presentations.</description>
     </item>
     
