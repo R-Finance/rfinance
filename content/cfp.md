@@ -3,7 +3,7 @@ title: "Call for Presentations"
 draft: false
 ---
 
-The twelfth annual R/Finance conference for applied finance using R will be
+The twelfth annual R/Finance conference for applied finance using `R` will be
 held on June 5 and 6, 2020 in Chicago, IL, USA at the [University of Illinois
 at Chicago](www.uic.edu). The conference will cover topics including portfolio
 management, time series analysis, advanced risk tools, high-performance
@@ -44,11 +44,11 @@ represented minorities in Quantitative Finance/STEM, and anyone researching
 under economic hardship.
 
 Submissions will be reviewed and accepted on a rolling basis with a final
-submission deadline of February 1, 2020. Submitters will be notified via email
-starting February 15, 2020 of acceptance and presentation length.
+submission deadline of **February 28, 2020**. Submitters will be notified via email
+on a rolling basis of acceptance and presentation length, so submit your 
 
 Additional details will be announced via the conference website
 http://www.RinFinance.com/ as they become available. Information on previous
 years' presenters and their presentations are under the `Archive` tab of the 
-site. We will make a seperate announcement when registration opens, in March.
+site. We'll make a seperate announcement when registration opens, in March.
 
