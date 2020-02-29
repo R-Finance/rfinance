@@ -3,6 +3,9 @@ title: "Call for Presentations"
 draft: false
 ---
 
+
+
+
 The twelfth annual R/Finance conference for applied finance using `R` will be
 held on June 5 and 6, 2020 in Chicago, IL, USA at the [University of Illinois
 at Chicago](www.uic.edu). The conference will cover topics including portfolio
@@ -10,6 +13,8 @@ management, time series analysis, advanced risk tools, high-performance
 computing, market microstructure, and econometrics. All will be discussed
 within the context of using `R` as a primary tool for financial model
 development, risk management, portfolio construction, and trading.
+
+**Please submit proposals online [here](http://uic.cvent.com/d/1hqrb9/4W).**
 
 From its humble Midwest beginnings, word of the conference spread among trading 
 desks and universities, until it became the primary meeting for academics and
@@ -31,8 +36,6 @@ Ideally, data sets should be made public for the purposes of reproducibility
 (though we realize this may be limited due to contracts with data vendors).
 Preference may be given to innovative research or presenters who have
 released R packages.
-
-Please submit proposals online [here](http://uic.cvent.com/d/1hqrb9/4W).
 
 Limited financial assistance for travel and conference admission may be
 available to presenters. As R/Finance is a volunteer open source effort from
