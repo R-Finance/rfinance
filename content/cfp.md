@@ -1,4 +1,4 @@
----
+    ---
 title: "Call for Presentations"
 draft: false
 ---
@@ -44,7 +44,7 @@ represented minorities in Quantitative Finance/STEM, and anyone researching
 under economic hardship.
 
 Submissions will be reviewed and accepted on a rolling basis with a final
-submission deadline of **February 28, 2020**. Submitters will be notified via email
+submission deadline of **February 29th, 2020**. Submitters will be notified via email
 on a rolling basis of acceptance and presentation length, so submit your 
 
 Additional details will be announced via the conference website
