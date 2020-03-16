@@ -1,7 +1,8 @@
-R/Finance 2020 is less than 3 months away (June 5-6) and it's impossible to
-predict how the global COVID-19 pandemic will continue to unfold. As you can
-imagine, this uncertainty makes it extremely difficult to plan an
-international conference with dozens of speakers and hundreds of attendees.
+As of today, 2020-03-16, R/Finance 2020 is less than 3 months away (June 5-6).
+It's impossible to predict how the global COVID-19 pandemic will continue to
+unfold. As you can imagine, this uncertainty makes it extremely difficult to
+plan an international conference with dozens of speakers and hundreds of
+attendees.
 
 We hope COVID-19 is no longer a global threat in June, but we don't know the
 extent that international travel and large gatherings will still be
