@@ -44,7 +44,7 @@ theme = ["hugo-rfinance-theme", "hugo-universal-theme"]
     title = "Applied Finance with R"
 
 [params.features]
-    enable = true
+    enable = false
 
 [params.committee]
     enable_footer = true
