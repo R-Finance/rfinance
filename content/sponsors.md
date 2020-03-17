@@ -22,7 +22,7 @@ with 12 cells (or approximately 900 pixels); 5k sponsors get two cells, and
 
 * Conference Registration website:
 
-    *  Sponsor event info page with logos and brief bios;
+    * Sponsor event info page with logos and brief bios;
     * Footer logo display on conference registration website pages determined
     by footer space and page length (note: logo size is determined by the
     sponsor donation level).
