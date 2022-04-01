@@ -1,21 +1,17 @@
-As of today, 2020-03-16, R/Finance 2020 is less than 3 months away (June 5-6).
-It's impossible to predict how the global COVID-19 pandemic will continue to
-unfold. As you can imagine, this uncertainty makes it extremely difficult to
-plan an international conference with dozens of speakers and hundreds of
-attendees.
+R/Finance is back, live and person for 2022! Join us in Chicago this Spring
+for the 14th anniversary of the conference that brings together some of the
+best people and conversation in quantitative finance -- covering R (or Python or Julia!),
+portfolio construction, statistics, quant ideas and more.
 
-We hope COVID-19 is no longer a global threat in June, but we don't know the
-extent that international travel and large gatherings will still be
-discouraged. Due to that uncertainty, **we have decided to cancel this year's
-R/Finance Conference**. This was a difficult decision, but the safety of our
-attendees comes first.
+We hope to see you this June 4th and 5th at the University of Illinois at Chicago:
 
-We truly apologize for any inconvenience this may cause for you. And we
-would like to invite you to submit a proposal and attend to next year's
-conference. The date is yet to be determined, but will likely be in early
-June.
+[R/Finance 2022](https://web.cvent.com/event/2efa4ed6-5d94-44cf-9c15-e0ae8d78276e/summary?environment=P2 "R/Finance2020")
 
-<!--
-Please see the UIC website at http://uic.cvent.com/d/1hqrb9/4W for all details 
-about the would be conference.
--->
+There is still time to submit a paper or abstract to speak. We are especially interested in
+lightning talks at this point - if you have an interesting project, problem, or solution, feel
+free to submit your abstract to the link above.
+
+Looking forward to seeing everyone in Chicago in June!
+
+Best,
+R/Finance Committee
