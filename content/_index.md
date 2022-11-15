@@ -1,20 +1,26 @@
-R/Finance is back, live and person for 2022! Join us in Chicago this Spring
-for the 14th anniversary of the conference that brings together some of the
-best people and conversation in quantitative finance -- covering R (or Python or Julia!),
-portfolio construction, statistics, quant ideas and more.
+The fifteenth annual R/Finance conference for applied finance using R will be
+held on May 19 and 20, 2023 in Chicago, IL, at the University of Illinois at
+Chicago. The conference brings together some of the best people and
+conversation in quantitative finance -- covering R (or Python or Julia!),
+portfolio construction, statistics, quant ideas and more!
 
-We hope to see you this June 3rd and 4th at the University of Illinois at Chicago:
+**The [R/Finance 2023 Call For Papers](https://go.uic.edu/RFinanceCFP2023 "R/Finance2023") is open!**
 
-[R/Finance 2022 Call For Papers](https://web.cvent.com/event/2efa4ed6-5d94-44cf-9c15-e0ae8d78276e/summary?environment=P2 "R/Finance2020")
+We encourage you to submit complete papers (in pdf format), and we will also
+consider one-page abstracts (in txt or pdf format). Papers closer to completion
+and proposals that provide R code are preferred.
 
-There is still time to submit a paper or abstract to speak. We are especially interested in
-lightning talks at this point - if you have an interesting project, problem, or solution, feel
-free to submit your abstract to the link above.
+We welcome submissions for full talks (approximately 20 minutes), abbreviated
+"lightning talks" (approximately 6 minutes), as well as (1 hour) pre-conference
+tutorials. (Scheduling considerations may require requested full talks moved to
+lightning). We encourage academic and practitioner proposals related to R.
 
-We will update this page when registration links open.
+You can submit your proposal at https://go.uic.edu/RFinanceCFP2023. Please share
+the link with colleagues and peers. We would especially appreciate your help
+sending the link to people from under-represented groups, and encouraging them
+to submit a proposal!
 
-Looking forward to seeing everyone in Chicago in June!
+We're looking forward to seeing everyone in Chicago in May!
 
 Best,
-
 R/Finance Committee
