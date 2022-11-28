@@ -32,6 +32,6 @@ that philosophy.
 The R/Finance conferences is a place where knowledge sharing, open source 
 collaborations, and new friendships are enjoyed by all persons. We ask the 
 broader finance, economics, statistics, computer science, and R programming 
-communities to assist us in continueing to diversify the conference, by inviting 
+communities to assist us in continuing to diversify the conference, by inviting 
 your underrepresented peers and colleagues to submit their proposals 
-[here](http://uic.cvent.com/d/1hqrb9/4W).
+[here](https://go.uic.edu/RFinanceCFP2023).
