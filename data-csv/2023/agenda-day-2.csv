@@ -1,0 +1,31 @@
+08:00,1:15,09:15,,,,"Coffee/ Breakfast"
+09:15,0:05,09:20,,,,"Kickoff"
+09:20,0:20,09:40,Talk,Risk,Ryan Brown,"Risk Management Challenges in Sustainability Themed Portfolios"
+09:40,0:20,10:00,Talk,Risk,Stefan Theußl,"fPortfolio 4.0 or the Rmetrics Reloaded"
+10:00,0:20,10:20,Talk,Risk,Francois Cocquemas,"Deep Implied Volatility Surfaces"
+10:20,0:20,10:40,,,,Break
+10:40,0:50,11:30,Keynote,Risk,Sam Savage,"Chancification – The Probability Power Grid"
+11:30,0:07,11:37,Lightning,Risk,Daniel Palomar,"Estimation of Heavy-Tailed Distributions for Portfolio Design"
+11:37,0:07,11:44,Lightning,Risk,José Vinícius de Miranda Cardoso,"Graphs Meet Stock Market Sectors: Theory and Practice in R"
+11:44,0:07,11:51,Lightning,ESG/Corporate,Roberto Delgado Castro,"Pivot Tables in R for Financial Analysis"
+11:51,0:20,12:11,Talk,ESG/Corporate,Michael Kane,"Integrating Technical Risk into Phase 2 Drug Trial Pricing Models"
+12:11,0:54,13:05,,,,Lunch
+13:05,0:20,13:25,Talk,ESG/Corporate,Oleg Bondarenko,"How Common is Insider Trading? Evidence from the Options Market"
+13:25,0:20,13:45,Talk,ESG/Corporate,Nika Juszczak,"Detecting Fraud in Financial Services Applications Over Time"
+13:45,0:20,14:05,Talk,ESG/Corporate,Kyle Balkissoon,"Values Aligned: ESG Screens and Investment Selection Skill"
+14:05,0:20,14:25,,,,Break
+14:25,0:20,14:45,Talk,Trading/Timing,Mark Bennett,"No Mystery: Synthetic Limit Order Books and Accelerated Training for Market Direction Prediction"
+14:45,0:20,15:05,Talk,Trading/Timing,Majeed Simaan,"Buy the Dip?"
+15:05,0:20,15:25,Talk,Trading/Timing,Paul Laux,"Machine Learning for Multi-Market Factor Timing"
+15:25,0:20,15:45,,,,Break
+15:45,0:07,15:52,Lightning,New Tech/Computing,Jason Cho,"Non-Fungible Token Transactions: Data and Challenges"
+15:52,0:07,15:59,Lightning,New Tech/Computing,Cyril De Lavergne,"Technology Option Forecasting Ensemble Strategy"
+15:59,0:07,16:06,Lightning,New Tech/Computing,Jay Panchal,"TBA: Quantum Computing Update"
+16:06,0:20,16:26,Talk,New Tech/Computing,Leonardo Silvestri,"dtts: Time-series functionality based on nanotime and data.table"
+16:26,0:20,16:46,Talk,New Tech/Computing,Troy Hernandez,"Embracing Serverless for Efficient Data Science and MLOps with IBM Code Engine"
+16:46,0:19,17:05,,,,Break
+17:05,0:20,17:25,Talk,New Tech/Computing,Thomas Harte,"A Cunning Plan... The Lambda Calculus, Lisp, Scheme, and R"
+17:25,0:50,18:15,Keynote,New Tech/Computing,Peter Cotton,"Why is R Beating Python at Microprediction?"
+18:15,0:10,18:25,,,,"Conclusion"
+18:25,0:10,18:35,,,,"Transition to reception downstairs (West Terrace)"
+18:35,4:15,22:50,,,,"Post-conference Reception at West Terrace"
