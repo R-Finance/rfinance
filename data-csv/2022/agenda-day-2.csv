@@ -1,26 +1,26 @@
-8:00 AM,1:30,9:30 AM,,,,Coffee/ Breakfast
-9:30 AM,0:05,9:35 AM,,,,Kickoff
-9:35 AM,0:20,9:55 AM,Talk,Risk/Credit,William Foote,Volatility and Spillover: Facts of Market Life
-9:55 AM,0:20,10:15 AM,Talk,Risk/Credit,Paul Laux,Learning by lending in the interbank market
-10:15 AM,0:06,10:21 AM,Lightning,Risk/Credit,Shilin Zhang,Bankruptcy court competition: Pro-debtor bias and Forum Shopping
-10:21 AM,0:06,10:27 AM,Lightning,Risk/Credit,Zubin Dowlaty,US Financial Markets States Identification Using Computational Geometry
-10:27 AM,0:06,10:33 AM,Lightning,Risk/Credit,Haider Almohri ,Expected Return on Investment Time of Interest-Free Loans using Absorbing Markov Chain
-10:33 AM,0:22,10:55 AM,,,,Break
-10:55 AM,0:20,11:15 AM,Talk,Risk/Credit,Eden Luvishis and Leonid Maksymenko,Financial Applications of Linear Risk Management via Non-linear Machine Learning
-11:15 AM,0:20,11:35 AM,Talk,Risk/Credit,Leopoldo Catania,Dynamic Multiple Quantile Models
-11:35 AM,0:20,11:55 AM,Talk,Macro/Commodities,Paul Teetor,Taming of Portfolio of Spreads
-11:55 AM,1:05,1:00 PM,,,,Lunch
-1:00 PM,0:50,1:50 PM,Keynote,Macro/Commodities,Thomas Harte,TBA
-1:50 PM,0:20,2:10 PM,Talk,Macro/Commodities,Chris Thomas,Pricing Copper Better Than Bloomberg: Better than KOSPI Levels?
-2:10 PM,0:20,2:30 PM,,,,Break
-2:30 PM,0:20,2:50 PM,Talk,Macro/Commodities,Bryan Rodriguez and Luis Arreola,Trading Commodities in Lower Earth Orbit
-2:50 PM,0:20,3:10 PM,Talk,Text/Computing,Kyle Balkissoon,Assessing the impact of extreme specific news events on forward returns
-3:10 PM,0:06,3:16 PM,Lightning,Text/Computing,David Ardia,Landscape of Academic Finance with the Structural Topic Model
-3:16 PM,0:06,3:22 PM,Lightning,Text/Computing,Matt Dancho,M6 Financial Forecasting Competition: What we've learned 
-3:22 PM,0:23,3:45 PM,,,,Break
-3:45 PM,0:20,4:05 PM,Talk,Text/Computing,Oliver Delmarcelle,sentopics: An R package for joint sentiment and topic analysis of textual data
-4:05 PM,0:20,4:25 PM,Talk,Text/Computing,Jay Panchal,qicR: Quantum Information & Computation in R - Bringing quantum computing to the R ecosystem
-4:25 PM,0:20,4:45 PM,Talk,Text/Computing,Jeff Ryan,Repeating R (and more!) with rpeat
-4:45 PM,0:10,4:55 PM,,,,Conclusion 
-4:55 PM,0:15,5:10 PM,,,,Transition to reception downstairs (West Terrace)
-5:10 PM,4:15,9:25 PM,,,,Post-conference Reception at West Terrace
+08:00,1:30,09:30,,,,Coffee/Breakfast,
+09:30,0:05,09:35,,,,Kickoff,
+09:35,0:20,09:55,Talk,Risk/Credit,William Foote,Volatility and Spillover: Facts of Market Life,
+09:55,0:20,10:15,Talk,Risk/Credit,Paul Laux,Learning by lending in the interbank market,https://rinfinance.s3.amazonaws.com/past.rinfinance.com/agenda/2022/LauxQianZhang.pdf
+10:15,0:06,10:21,Lightning,Risk/Credit,Shilin Zhang,Bankruptcy court competition: Pro-debtor bias and Forum Shopping,https://rinfinance.s3.amazonaws.com/past.rinfinance.com/agenda/2022/ShilinZhangt.pptx
+10:21,0:06,10:27,Lightning,Risk/Credit,Zubin Dowlaty,US Financial Markets States Identification Using Computational Geometry,
+10:27,0:06,10:33,Lightning,Risk/Credit,Haider Almohri ,Expected Return on Investment Time of Interest-Free Loans using Absorbing Markov Chain,
+10:33,0:22,10:55,,,,Break,
+10:55,0:20,11:15,Talk,Risk/Credit,Eden Luvishis and Leonid Maksymenko,Financial Applications of Linear Risk Management via Non-linear Machine Learning,https://rinfinance.s3.amazonaws.com/past.rinfinance.com/agenda/2022/LuvishisMaksymenkoSimaan.pdf
+11:15,0:20,11:35,Talk,Risk/Credit,Leopoldo Catania,Dynamic Multiple Quantile Models,https://rinfinance.s3.amazonaws.com/past.rinfinance.com/agenda/2022/LeopoldoCatania.pdf
+11:35,0:20,11:55,Talk,Macro/Commodities,Paul Teetor,Taming of Portfolio of Spreads,https://rinfinance.s3.amazonaws.com/past.rinfinance.com/agenda/2022/PaulTeetor.pdf
+11:55,1:05,13:00,,,,Lunch,
+13:00,0:50,13:50,Keynote,Macro/Commodities,Thomas Harte,"Treezer Goode: The Curious Tale of a Wood that Needed the Trees",https://rinfinance.s3.amazonaws.com/past.rinfinance.com/agenda/2022/ThomasHarte.html
+13:50,0:20,14:10,Talk,Macro/Commodities,Chris Thomas,Pricing Copper Better Than Bloomberg: Better than KOSPI Levels?,https://rinfinance.s3.amazonaws.com/past.rinfinance.com/agenda/2022/ChrisThomas.pptx
+14:10,0:20,14:30,,,,Break,
+14:30,0:20,14:50,Talk,Macro/Commodities,Bryan Rodriguez and Luis Arreola,Trading Commodities in Lower Earth Orbit,
+14:50,0:20,15:10,Talk,Text/Computing,Kyle Balkissoon,Assessing the impact of extreme specific news events on forward returns,https://rinfinance.s3.amazonaws.com/past.rinfinance.com/agenda/2022/KyleBalkissoon.pdf
+15:10,0:06,15:16,Lightning,Text/Computing,David Ardia,Landscape of Academic Finance with the Structural Topic Model,https://rinfinance.s3.amazonaws.com/past.rinfinance.com/agenda/2022/DavidArdiaSTM.pdf
+15:16,0:06,15:22,Lightning,Text/Computing,Matt Dancho,M6 Financial Forecasting Competition: What we've learned,https://rinfinance.s3.amazonaws.com/past.rinfinance.com/agenda/2022/MattDancho.pdf
+15:22,0:23,15:45,,,,Break,
+15:45,0:20,16:05,Talk,Text/Computing,Oliver Delmarcelle,sentopics: An R package for joint sentiment and topic analysis of textual data,
+16:05,0:20,16:25,Talk,Text/Computing,Jay Panchal,qicR: Quantum Information & Computation in R - Bringing quantum computing to the R ecosystem,https://rinfinance.s3.amazonaws.com/past.rinfinance.com/agenda/2022/JawaharPanchal.pdf
+16:25,0:20,16:45,Talk,Text/Computing,Jeff Ryan,Repeating R (and more!) with rpeat,
+16:45,0:10,16:55,,,,Conclusion,
+16:55,0:15,17:10,,,,Transition to reception downstairs (West Terrace),
+17:10,4:15,21:25,,,,Post-conference Reception at West Terrace,
