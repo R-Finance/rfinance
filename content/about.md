@@ -114,6 +114,20 @@ and [Dr. Li Deng](https://www.ece.uw.edu/people/li-deng/)
 [Dr. Matt Taddy](https://www.linkedin.com/in/matt-taddy-433078137/), 
 and [Art Steinmetz](https://www.linkedin.com/in/asteinmetz/) 
 
+**2020:** No conference due to COVID-19
+
+**2021:** No conference due to COVID-19
+
+**2022:** [Matthew Dixon](http://www.matthew-dixon.com/),
+[Veronika Rockova](https://www.chicagobooth.edu/faculty/directory/r/veronika-rockova),
+and [Thomas Harte](https://www.linkedin.com/in/thomas-p-harte-415a3413/)
+
+<!--
+**2023:** [Carlos Carvalho]
+[Chandni Bhan]
+[Sam Savage]
+[Peter Cotton]
+-->
 
 ## Organizing Committee 
 
