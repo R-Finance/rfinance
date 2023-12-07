@@ -6,17 +6,19 @@ portfolio construction, statistics, quant ideas and more!
 
 **The [R/Finance 2024 Call For Presentations](https://go.uic.edu/RFinanceCFP2024 "R/Finance2024") is open!**
 
-We encourage you to submit complete papers (in pdf format), and we will also
-consider one-page abstracts (in txt or pdf format). Papers closer to completion
-and proposals that provide R code are preferred.  We welcome submissions for
-full talks (approximately 20 minutes), abbreviated "lightning talks"
-(approximately 6 minutes), as well as (1 hour) pre-conference tutorials.
-(Scheduling considerations may require requested full talks moved to
-lightning). We encourage academic and practitioner proposals related to R.
+We invite you to submit complete papers in pdf format, or one-page abstracts
+(in txt or pdf format). More complete papers are preferred, as well as
+submissions that include working code. We welcome submissions for full talks
+(approximately 20 min.), abbreviated "lightning talks" (approx. 6 min.), as
+well as (1 hr.) pre-conference tutorials. (Scheduling considerations may
+require requested full talks moved to lightning).
 
-There are many benefits to giving a presentation at the conference. It makes
-your work visible to the community, which often leads to interesting
-conversations with others about your work. A full paper is not required.
+Both academic and practitioner proposals related to R are encouraged. We
+especially encourage those who were previously unaware of R/Finance to submit
+their talk proposals. There are many benefits to giving a presentation at the
+conference. It makes your work visible to the community, which often leads to
+interesting conversations with others about your work. A full paper is not
+required!
 
 **Diversity:** In an effort to increase diversity of the presentations and
 presenters at the conference, the committee asks and encourages members of
@@ -29,4 +31,4 @@ the link with colleagues and peers. We would especially appreciate your help
 sending the link to people from under-represented groups, and encouraging them
 to submit a proposal!
 
-We're looking forward to seeing you in Chicago in May!
+We look forward to seeing you in Chicago in May!

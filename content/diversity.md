@@ -34,4 +34,4 @@ collaborations, and new friendships are enjoyed by all persons. We ask the
 broader finance, economics, statistics, computer science, and R programming 
 communities to assist us in continuing to diversify the conference, by inviting 
 your underrepresented peers and colleagues to submit their proposals 
-[here](https://go.uic.edu/RFinanceCFP2023).
+[here](https://go.uic.edu/RFinanceCFP2024).
