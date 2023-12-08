@@ -1,36 +1,36 @@
-"08:00","1:00","09:00","NA","","","Coffee/ Breakfast"
-"09:00","0:05","09:05","NA","","","Kickoff"
-"09:05","0:06","09:11","Lightning","Fixed Income","Dean Markwick","Hierarchical nonparametric Hawkes processes with applications to finance"
-"09:11","0:06","09:17","Lightning","Fixed Income","Wadim Djatschenko","BondValuation: An R Package for Fixed Coupon Bond Analysis"
-"09:17","0:06","09:23","Lightning","Fixed Income","Smitha Shivakumar","R-view on Prepayment and Interest rate risk in MBS"
-"09:23","0:06","09:29","Lightning","Fixed Income","Maisa Aniceto","Stroll Through the Forest: Applying Random Forest to Predict Credit Risk"
-"09:29","0:20","09:49","Talk","Fixed Income","Benjamin Christoffersen","Modeling Frailty Correlated Defaults: An Application of the dynamic hazard Package"
-"09:49","0:20","10:09","Talk","Microstructure","Francisco Azeredo and Chris Price","A study of the time series behavior of securities lending fees"
-"10:09","0:16","10:25","NA","","","Break"
-"10:25","0:06","10:31","Lightning","Microstructure","Che Guan","Cryptocurrency Volatility Models: Realized, Predicted and Implied Volatilities"
-"10:31","0:06","10:37","Lightning","Microstructure","Yingyi Gu","Multilinear Principal Component Analysis on Implied Volatility Surface"
-"10:37","0:06","10:43","Lightning","Microstructure","Joseph Loss","Options Pricing in Levy Models"
-"10:43","0:06","10:49","Lightning","Microstructure","Hongyu Zhang","Improved Corwin-Schultz estimation"
-"10:49","0:06","10:55","Lightning","Microstructure","Vyacheslav Arbuzov","Rusquant: another way of trading with R"
-"10:55","0:20","11:15","Talk","Banking/CorpFin","Sandra Rolnicki","Banking on Sentiment: How Natural Language Processing Selected a Portfolio of Bank Stocks that Outperformed a Bank Stock Index by 15%"
-"11:15","0:50","12:05","Keynote","","Genevera Allen","Tensor Decompositions for Time-Varying Networks with Applications to Finance and Neuroscience"
-"12:05","0:50","12:55","NA","","","Lunch"
-"12:55","0:20","13:15","Talk","Banking/CorpFin","Abena Owusu","Do Analysts Reports Still Have Value? Evidence from Machine Learning"
-"13:15","0:20","13:35","Talk","Banking/CorpFin","Tiffany Jiang","Using Statistical Learning to Analyze Merger Activity"
-"13:35","0:20","13:55","Talk","Banking/CorpFin","Thomas Harte","Hedging the Unhedgeable: Hedging Risk When Prices Are Not Observable"
-"13:55","0:15","14:10","NA","","","Break"
-"14:10","0:20","14:30","Talk","Banking/CorpFin","Andrew Nguyen","DELPHI-BR: Data-driven Early-warning Learning-based system Prognosticating High-Impact Banking Risks"
-"14:30","0:20","14:50","Talk","Macro/ESG","Soumya Kalra and Brian Peterson","Diversity in Quant Finance "
-"14:50","0:06","14:56","Lightning","Banking/CorpFin","Fernando Anselmo Filho","Mergers and acquisitions: Influence of competition on the target company evaluation."
-"14:56","0:06","15:02","Lightning","Macro/ESG","Larissa Adamiec","Contrasting GARCH daily variance predictions between foreign exchange returns and carry trade strategy returns"
-"15:02","0:06","15:08","Lightning","Macro/ESG","Yimeng Yin","Analyzing the Interplay Between Public Pension Finances and Governmental Finances: Lessons from Linking an Economic Model to a Pension Fund Model"
-"15:08","0:06","15:14","Lightning","Macro/ESG","Jay Emerson","Financial Meta-Analyses: Making the Most of ESG Metrics"
-"15:14","0:06","15:20","Lightning","Macro/ESG","Rochelle March","Quantifying Company Impact on the UN Sustainable Development Goals"
-"15:20","0:50","16:10","Keynote","","Art Steinmetz","Confessions of an Accidental Quant"
-"16:10","0:15","16:25","NA","","","Break"
-"16:25","0:20","16:45","Talk","Macro/ESG","Hong Anh Luu","Food price inflation at risk"
-"16:45","0:20","17:05","Talk","Macro/ESG","Joan Zhang","An Application in Machine Learning - This Time Will Never Be Different"
-"17:05","0:20","17:25","Talk","Macro/ESG","Hernando Cortina","Transmission Mechanisms of Corporate Responsibility to Investor Returns"
-"17:25","0:10","17:35","NA","","Organizers","Conclusion "
-"17:35","0:15","17:50","NA","","","Transition to Cruz Blanca"
-"17:50","4:15","22:05","NA","","","Post-conference Reception at Cruz Blanca"
+"08:00","1:00","09:00","NA","","","Coffee/ Breakfast",
+"09:00","0:05","09:05","NA","","","Kickoff",
+"09:05","0:06","09:11","Lightning","Fixed Income","Dean Markwick","Hierarchical nonparametric Hawkes processes with applications to finance",https://rinfinance.s3.amazonaws.com/past.rinfinance.com/agenda/2019/DeanMarkwick.pdf
+"09:11","0:06","09:17","Lightning","Fixed Income","Wadim Djatschenko","BondValuation: An R Package for Fixed Coupon Bond Analysis",https://rinfinance.s3.amazonaws.com/past.rinfinance.com/agenda/2019/Djatschenko.pptx
+"09:17","0:06","09:23","Lightning","Fixed Income","Smitha Shivakumar","R-view on Prepayment and Interest rate risk in MBS",https://rinfinance.s3.amazonaws.com/past.rinfinance.com/agenda/2019/SmithaShivakumar.pdf
+"09:23","0:06","09:29","Lightning","Fixed Income","Maisa Aniceto","Stroll Through the Forest: Applying Random Forest to Predict Credit Risk",https://rinfinance.s3.amazonaws.com/past.rinfinance.com/agenda/2019/MaisaAniceto.pdf
+"09:29","0:20","09:49","Talk","Fixed Income","Benjamin Christoffersen","Modeling Frailty Correlated Defaults: An Application of the dynamic hazard Package",
+"09:49","0:20","10:09","Talk","Microstructure","Francisco Azeredo and Chris Price","A study of the time series behavior of securities lending fees",https://rinfinance.s3.amazonaws.com/past.rinfinance.com/agenda/2019/ChrisPrice.pdf
+"10:09","0:16","10:25","NA","","","Break",
+"10:25","0:06","10:31","Lightning","Microstructure","Che Guan","Cryptocurrency Volatility Models: Realized, Predicted and Implied Volatilities",
+"10:31","0:06","10:37","Lightning","Microstructure","Yingyi Gu","Multilinear Principal Component Analysis on Implied Volatility Surface",https://rinfinance.s3.amazonaws.com/past.rinfinance.com/agenda/2019/YingyiGu.pdf
+"10:37","0:06","10:43","Lightning","Microstructure","Joseph Loss","Options Pricing in Levy Models",https://rinfinance.s3.amazonaws.com/past.rinfinance.com/agenda/2019/JosephLoss.pptx
+"10:43","0:06","10:49","Lightning","Microstructure","Hongyu Zhang","Improved Corwin-Schultz estimation",https://rinfinance.s3.amazonaws.com/past.rinfinance.com/agenda/2019/HongyuZhang.pptx
+"10:49","0:06","10:55","Lightning","Microstructure","Vyacheslav Arbuzov","Rusquant: another way of trading with R",https://rinfinance.s3.amazonaws.com/past.rinfinance.com/agenda/2019/VyacheslavArbuzov.pdf
+"10:55","0:20","11:15","Talk","Banking/CorpFin","Sandra Rolnicki","Banking on Sentiment: How Natural Language Processing Selected a Portfolio of Bank Stocks that Outperformed a Bank Stock Index by 15%",https://rinfinance.s3.amazonaws.com/past.rinfinance.com/agenda/2019/SandraRolnicki.pdf
+"11:15","0:50","12:05","Keynote","","Genevera Allen","Tensor Decompositions for Time-Varying Networks with Applications to Finance and Neuroscience",
+"12:05","0:50","12:55","NA","","","Lunch",
+"12:55","0:20","13:15","Talk","Banking/CorpFin","Abena Owusu","Do Analysts Reports Still Have Value? Evidence from Machine Learning",
+"13:15","0:20","13:35","Talk","Banking/CorpFin","Tiffany Jiang","Using Statistical Learning to Analyze Merger Activity",https://rinfinance.s3.amazonaws.com/past.rinfinance.com/agenda/2019/TiffanyJiang.pdf
+"13:35","0:20","13:55","Talk","Banking/CorpFin","Thomas Harte","Hedging the Unhedgeable: Hedging Risk When Prices Are Not Observable",
+"13:55","0:15","14:10","NA","","","Break",
+"14:10","0:20","14:30","Talk","Banking/CorpFin","Andrew Nguyen","DELPHI-BR: Data-driven Early-warning Learning-based system Prognosticating High-Impact Banking Risks",https://rinfinance.s3.amazonaws.com/past.rinfinance.com/agenda/2019/AndrewNguyen.pdf
+"14:30","0:20","14:50","Talk","Macro/ESG","Soumya Kalra and Brian Peterson","Diversity in Quant Finance",
+"14:50","0:06","14:56","Lightning","Banking/CorpFin","Fernando Anselmo Filho","Mergers and acquisitions: Influence of competition on the target company evaluation.",https://rinfinance.s3.amazonaws.com/past.rinfinance.com/agenda/2019/FernandoFilho.pdf
+"14:56","0:06","15:02","Lightning","Macro/ESG","Larissa Adamiec","Contrasting GARCH daily variance predictions between foreign exchange returns and carry trade strategy returns",
+"15:02","0:06","15:08","Lightning","Macro/ESG","Yimeng Yin","Analyzing the Interplay Between Public Pension Finances and Governmental Finances: Lessons from Linking an Economic Model to a Pension Fund Model",https://rinfinance.s3.amazonaws.com/past.rinfinance.com/agenda/2019/Yimeng+Yin.pptx
+"15:08","0:06","15:14","Lightning","Macro/ESG","Jay Emerson","Financial Meta-Analyses: Making the Most of ESG Metrics",
+"15:14","0:06","15:20","Lightning","Macro/ESG","Rochelle March","Quantifying Company Impact on the UN Sustainable Development Goals",https://rinfinance.s3.amazonaws.com/past.rinfinance.com/agenda/2019/RochelleMarch.pdf
+"15:20","0:50","16:10","Keynote","","Art Steinmetz","Confessions of an Accidental Quant",
+"16:10","0:15","16:25","NA","","","Break",
+"16:25","0:20","16:45","Talk","Macro/ESG","Hong Anh Luu","Food price inflation at risk",https://rinfinance.s3.amazonaws.com/past.rinfinance.com/agenda/2019/HongAnh.pdf
+"16:45","0:20","17:05","Talk","Macro/ESG","Joan Zhang","An Application in Machine Learning - This Time Will Never Be Different",https://rinfinance.s3.amazonaws.com/past.rinfinance.com/agenda/2019/JoanZhang.pptx
+"17:05","0:20","17:25","Talk","Macro/ESG","Hernando Cortina","Transmission Mechanisms of Corporate Responsibility to Investor Returns",
+"17:25","0:10","17:35","NA","","Organizers","Conclusion",
+"17:35","0:15","17:50","NA","","","Transition to Cruz Blanca",
+"17:50","4:15","22:05","NA","","","Post-conference Reception at Cruz Blanca",
