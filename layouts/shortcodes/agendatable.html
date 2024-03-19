@@ -19,7 +19,7 @@
         {{ $file_name := split (index $r 7) "." }}
         {{ if gt (len $file_name) 1 }}
           {{ $file_ext := index $file_name (math.Add (len $file_name) -1) }}
-          <a href="{{ index $r 7 }}">({{ $file_ext }})</a>
+          <a href="{{ index $r 7 }}" target="_blank">({{ $file_ext }})</a>
         {{ end }}
       </td>
     </tr>
