@@ -50,4 +50,4 @@ theme = ["hugo-rfinance-theme", "hugo-universal-theme"]
 
 [params]
     style = "blue"
-    logo = "img/Rfinance_logo.png"
+    logo = "img/transparent-logo.png"
