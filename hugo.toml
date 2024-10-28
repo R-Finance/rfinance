@@ -1,6 +1,6 @@
 baseURL = "https://www.rinfinance.com/"
 languageCode = "en-us"
-title = "R/Finance Conference"
+title = "Open Source Quantitative Finance Conference"
 
 theme = ["hugo-rfinance-theme", "hugo-universal-theme"]
 
@@ -40,7 +40,7 @@ theme = ["hugo-rfinance-theme", "hugo-universal-theme"]
     weight = 5
 
 [params.welcome]
-    title = "Applied Finance with R"
+    title = "Open Source Quantitative Finance"
 
 [params.features]
     enable = false

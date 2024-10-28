@@ -5,7 +5,7 @@ draft: false
 
 The lack of diversity in the fields of statistical programming and software 
 development are well known. So too, is the general case in finance. As 
-quantitative finance lives at this intersection, R/Finance would like to be 
+quantitative finance lives at this intersection, osQF would like to be 
 part of the solution. Thus, we want to take this opportunity to invite all 
 persons to join us in learning and contributing to these exciting and innovative 
 areas of study.
@@ -29,9 +29,9 @@ on-the-job. A virtue of open source software is you do not have to be
 well-known, or an expert, to provide a valuable contribution. We fully embrace 
 that philosophy.
 
-The R/Finance conferences is a place where knowledge sharing, open source 
+The osQF conference is a place where knowledge sharing, open source 
 collaborations, and new friendships are enjoyed by all persons. We ask the 
 broader finance, economics, statistics, computer science, and R programming 
 communities to assist us in continuing to diversify the conference, by inviting 
 your underrepresented peers and colleagues to submit their proposals 
-[here](https://go.uic.edu/RFinanceCFP2024).
+[here](https://go.uic.edu/osQFCFP).

@@ -1,17 +1,16 @@
 ---
-title: "About R/Finance"
-subtitle: "Applied Finance with R"
+title: "About osQF"
+subtitle: "Open Source Quantitative Finance"
 ---
 
-
-R/Finance was founded in the fall of 2008, by a small group of open source 
+osQF started as R/Finance in the fall of 2008. It was founded by a small group of open source 
 package authors, finance industry practitioners, and finance professors. 
 Inspired by popular workshops and summer schools about "R in Finance" held by 
 Diethelm Würtz at Meielisalp in the Swiss mountains, the inaugural R/Finance 
 conference took place at the Chicago campus of the University of Illinois (UIC) 
 in April 2009. 
 
-From its humble beginning, R/Finance has maintained the single-track 
+From its humble beginning, the conference has maintained the single-track 
 presentation model. With presentations by some of the most knowledgeable 
 emerging and experienced professionals in the field, attendees never experience 
 the fear of missing out on the most interesting content. Large round tables set 
@@ -22,23 +21,23 @@ and can quickly access markets, post content online, download and experiment
 with packages discovered at the conference, or write and commit code with new 
 and existing open source collaborations.
 
-At the heart of R/Finance is an open source community, uniquely unparalleled in 
+The open source community is at the heart of osQF because it is uniquely unparalleled in 
 both its breadth and depth. Emerging and experienced attendees alike return each 
 year to build new relationships, deepen old ones, and be inspired by the
 work of their peers. 
 
-## R Packages and Code
+## Open Source Packages, Libraries, and Code
 
 In many important fields, valuable intellectual property is a closely held 
 secret. Sometimes, we find published works and generalized approaches in close
-proximity to these propriety methods. At R/Finance, sometimes these generalized 
+proximity to these propriety methods. At osQF, sometimes these generalized 
 approaches get developed, documented, packaged, and open sourced. 
 
 Amidst an open atmosphere of relevant conversations, some of the most 
 successful open source collaborations in both R and Finance have been 
 created. Collaboration, driven by a deep intellectual curiosity and a commitment 
 to high quality work, are a few of the values shaping the innovative culture at 
-R/Finance. Open to all interested persons, we invite you to come develop with us.
+osQF. Open to all interested persons, we invite you to come develop with us.
 
 ## Curated Content  
 
@@ -59,7 +58,7 @@ their respective fields using R in time series, econometrics, derivative
 securities, financial engineering, portfolio management, statistics, machine 
 learning, and artificial intelligence.
 
-Keynotes of R/Finance past include:
+Past conference Keynotes include:
 
 **2009:** [Dr. Patrick Burns](https://www.burns-stat.com/about-burns-statistics/), 
 [Dr. Robert Grossman](http://rgrossman.com/about.html), 
@@ -131,7 +130,7 @@ and [Thomas Harte](https://www.linkedin.com/in/thomas-p-harte-415a3413/)
 
 ## Organizing Committee 
 
-Behind R/Finance, is a group of recognizable and emerging leaders in both the 
+Behind osQF, is a group of recognizable and emerging leaders in both the 
 open source R and finance communities. The groups collective background includes 
 working with large hedge funds, the Federal Reserve, high frequency market 
 making firms, fintech companies, investment banks, commodity 

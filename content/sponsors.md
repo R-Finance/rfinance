@@ -7,8 +7,8 @@ draft: false
 
 Sponsorships ranging from $5,000 to $10,000 brand you as a leader in the
 rapidly growing finance statistical computing and graphics field and support
-the premier international learning and networking convening for the R software
-community.
+the premier international learning and networking convening for the open source
+finance community.
 
 ## Sponsor Incentives
 
