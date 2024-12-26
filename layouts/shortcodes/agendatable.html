@@ -5,8 +5,9 @@
   <caption><font size=+3>{{ .Get "day" }}</font></caption>
   <tbody>
     {{ $url := .Get "file" }}
-    {{ $sep := "," }}
-    {{ range $i, $r := getCSV $sep $url }}
+    {{ $resource := resources.Get $url }}
+    {{ $csv := transform.Unmarshal $resource }}
+    {{ range $i, $r := $csv }}
     <tr>
       {{ if gt (len (index $r 0)) 0 }}
       <td style="min-width: 100px; white-space: nowrap;">{{ index $r 0 }} - {{ index $r 2 }}</td>
