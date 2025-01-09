@@ -3,7 +3,7 @@ library(xml2)
 create_one_agenda_day <-
 function(n, xpaths, html)
 {
-    tbody <- xml_find_first(html, sprintf("//table//tbody[%d]", n))
+    tbody <- xml_find_first(html, sprintf(xpaths$table, n))
 
     talk_colors <- xml_attr(xml_find_all(tbody, xpaths$talk_color), "color")
     talk_color_map <-
@@ -13,9 +13,8 @@ function(n, xpaths, html)
           "#894411" = "Talk")
     talk_type <- talk_color_map[talk_colors]
     blanks <- rep("", length(talk_type))
-    #browser()
 
-    talk_times <- xml_text(xml_find_all(tbody, "./tr/td[1]"))
+    talk_times <- xml_text(xml_find_all(tbody, xpaths$talk_times))
     talk_times <- strsplit(talk_times, "-", fixed = TRUE)
 
     pattern <- "[^[:digit:]]([[:digit:]]{1,2}:[[:digit:]]{2}).*"
@@ -35,8 +34,8 @@ function(n, xpaths, html)
     talk_title <- gsub(": ", "", talk_title)
     talk_title <- gsub("[[:punct:][:space:]]*\\((pdf|ppt|pptx|doc|docx|html|htm)\\)[[:punct:][:space:]]*.*", "", talk_title)
 
-    make_url <- function(tbody) {
-        talk_url <- xml_find_first(xml_find_all(tbody, "./tr"), ".//a")
+    make_url <- function(tbody, xpaths) {
+        talk_url <- xml_find_first(xml_find_all(tbody, xpaths$talk_text_all), ".//a")
         talk_url <- xml_attr(talk_url, "href")
         talk_url <- ifelse(is.na(talk_url), "", talk_url)
 
@@ -46,7 +45,7 @@ function(n, xpaths, html)
 
         return(talk_url)
     }
-    talk_url_s3 <- make_url(tbody)
+    talk_url_s3 <- make_url(tbody, xpaths)
 
 #length(blanks)
 #length(talk_start)
@@ -68,24 +67,39 @@ function(n, xpaths, html)
 }
 
 create_agenda <-
-function(year)
+function(year, n_tables = 2)
 {
+
     if (year == "2018") {
         agenda_dir <- ""
         xpaths <-
             list(talk_text_all = "./tr/td[2]",
+                 table = "//table//tbody[%d]",
+                 talk_times = "./tr/td[1]",
                  talk_author = "./tr/td[2]//font[@color]",
                  talk_color  = ".//font[@color]")
     } else if (year == "2017") {
         agenda_dir <- ""
         xpaths <-
             list(talk_text_all = "./tr/td[2]",
+                 table = "//table//tbody[%d]",
+                 talk_text_all = "./tr/td[2]",
                  talk_author = "./tr/td[2]//font[@color]",
+                 talk_color  = ".//font[@color]")
+    } else if (year %in% c("2010", "2011", "2012")) {
+        agenda_dir <- "/agenda"
+        xpaths <-
+            list(table = "(//body/table/table[@class='agenda'])[%d]",
+                 talk_times = "./tr/td[@align='right'][1]",
+                 talk_text_all = "./tr//td[@width]",
+                 talk_author = "./tr/td//font[@color]",
                  talk_color  = ".//font[@color]")
     } else {
         agenda_dir <- "/agenda"
         xpaths <-
-            list(talk_text_all = "./tr/td[2]//font[@size]",
+            list(talk_text_all = "./tr/td[2]",
+                 table = "//table//tbody[%d]",
+                 talk_times = "./tr/td[1]",
                  talk_author = "./tr/td[2]//font[@color]",
                  talk_color  = ".//font[@color]")
     }
@@ -106,13 +120,41 @@ function(year)
 
         # read into xml2 object
         rf2_html <- read_html(tf)
-        browser()
+    } else if (year %in% c(2010, 2011, 2012)) {
+        # special-case because the agenda isn't in a table for these years
+        rf2_data <- readLines(rf2_url)
+
+        # remove 'blank' line
+        rf2_data <- gsub("<tr><td colspan=\"5\" align=\"left\"><nobr>&nbsp; &nbsp;</nobr></td></tr>", "", rf2_data, fixed = TRUE)
+
+        # add 'table' tags between days
+        rf2_data <- gsub("<tr><td colspan=\"5\" align=\"left\">", "</table><table class=\"agenda\">", rf2_data, fixed = TRUE)
+
+        # put start/end times in one column, like other years
+        p_align <- "<td align=\"[[:alpha:]]+\">"
+        rf2_data <- gsub(paste0("</td>", p_align, "(</td>)*\\s*-\\s*(</td>)*", p_align), "-", rf2_data)
+
+        # make xpath to opening/closing remarks same as other column text
+        rf2_data <- gsub("Opening remarks", "<font size=\"-1\">Opening Remarks", rf2_data)
+        #rf2_data <- gsub("Closing remarks", "<font size=\"-1\">Closing Remarks</font>", rf2_data)
+
+        # remove this line from 2010
+        rf2_data <- rf2_data[!grepl("University of Illinois at Chicago <em>Student Center East</em>", rf2_data)]
+
+        # save to temp file
+        tf <- tempfile()
+        on.exit(unlink(tf), add = TRUE)
+        writeLines(rf2_data, tf)
+
+        if (isTRUE(DEBUG)) browser()
+
+        # read into xml2 object
+        rf2_html <- read_html(tf)
     } else {
         rf2_html <- read_html(rf2_url)
     }
 
-    list(create_one_agenda_day(1, xpaths, rf2_html),
-         create_one_agenda_day(2, xpaths, rf2_html))
+    lapply(seq_len(n_tables), create_one_agenda_day, xpaths = xpaths, html = rf2_html)
 }
 
 write_agenda <-
@@ -131,9 +173,9 @@ function(year, agenda = NULL, outdir = "assets/data-csv")
 }
 
 create_and_write <-
-function(yyyy)
+function(yyyy, n_tables = 2)
 {
-    x <- create_agenda(yyyy)
+    x <- create_agenda(yyyy, n_tables)
     write_agenda(yyyy, x)
     invisible(x)
 }
@@ -143,4 +185,10 @@ create_and_write(2018)
 create_and_write(2017)
 create_and_write(2016)
 create_and_write(2015)
+
+create_and_write(2014)
+create_and_write(2013)
+create_and_write(2012)
+create_and_write(2011, 3)
+create_and_write(2010)
 
