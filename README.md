@@ -1,7 +1,6 @@
-# rfinance
-R/Finance Website (hugo)
+# osQF (R/Finance) Conference Website
 
-# getting started
+### getting started
 
 * clone repo and submodule
 
@@ -21,43 +20,33 @@ cd rfinance/     # the top-level of the repo
 hugo -D          # -D for draft pages (if there are any), or use ./buildMe.sh
 ```
 
-# repo layout
+### repo layout
 
 * top-level content is in `content/`
 * all prior years are in `content/archive/`
-    * recent years are built in to this site
-    * older years are iframes to Dirk's original sites
 * layouts are in `conference/layouts/`
 
-# migrating older years to this site
+### adding 'Archive' years
 
 All prior years' conferences are specified in a `[yyyy].md` file in the
 `content/archive/` directory. Each file header contains roughly the same
 metadata, with the exception of the `linktitle` and `weight` value. The
 `weight` value needs to be smaller for more recent years.
 
-Older years that are still hosted on GitHub pages in Dirk's `rf2` repo use
-the `archive` shortcode (in `layouts/shortcodes/archive.html`). This is
-simply an iframe to the old site hosted on GitHub.
-
-Prior years that are hosted with the site in this repo use the `agendatable`
-shortcode. This shortcode takes a CSV from `data-csv/` and uses it to create
-a table of agenda items. You need to specify the day and the file location
-for each day's table. Use the page for 2019 as a template for other years.
-
-So migrating a prior year involves creating the CSV and changing the markdown
-file in `content/archive/` to use the `agendatable` shortcode instead of the
-`archive` shortcode.
+The `agendatable` shortcode takes a CSV from `assets/data-csv/yyyy/` and uses
+uses it to create a table of agenda items. You need to specify the day and the
+file location for each day's table. Use the page for the latest year as a
+template for new years.
 
 The CSV parser isn't particularly clever, so make sure your CSVs looks very
-much like the two that already exist for 2019.
+much like those that already exist.
 
-# deploy
+### deployment
 
-The site is hosted on GitHub pages, and all the generated content is stored
-in the `docs/` directory. You should only need to run `hugo` at the top level
-to build/update the site locally. Push the `master` branch to `origin` to make
-your changes public.
+The site uses GitHub Actions to automatically deploy on every push. There's no
+need to build locally.
+
+### ideas
 
 The Hugo docs may be useful if we want to do something more fancy in the
 future: https://gohugo.io/hosting-and-deployment/
