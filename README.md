@@ -17,7 +17,8 @@ git submodule update
 
 ```
 cd rfinance/     # the top-level of the repo
-hugo -D          # -D for draft pages (if there are any), or use ./buildMe.sh
+hugo -D          # -D for draft pages (if there are any)
+hugo server      # run the website locally
 ```
 
 ### repo layout
