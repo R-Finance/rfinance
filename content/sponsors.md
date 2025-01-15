@@ -15,7 +15,7 @@ finance community.
 ### Branding Opportunities
 
 * Web Banner Advertising: Top level branding begins as early as January
-continuing for up to 12 months on the http://www.rinfinance.com/ website.
+continuing for up to 12 months on the http://www.osqf.org/ website.
 The rendering of the logos is dynamic and uses standard CSS grids, typically
 with 12 cells (or approximately 900 pixels); 5k sponsors get two cells, and
 10k sponsors get 4 cells.

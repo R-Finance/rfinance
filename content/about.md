@@ -44,7 +44,7 @@ osQF. Open to all interested persons, we invite you to come develop with us.
 Since 2009, attendees have enjoyed roughly 400 presentations. Accessible from 
 the Archive tab, a balanced mix of keynotes, full talks, and lightning-talks 
 cover a variety of topics with many on the leading edge of their respective 
-fields. Our [call for presenters](https://www.rinfinance.com/cfp/) attracts high 
+fields. Our [call for presenters](https://www.osqf.org/cfp/) attracts high 
 quality content from accomplished individuals, earning the multidisciplinary 
 conference a reputation as one of the most important events of the year among 
 researchers practicing and applying R in finance, business, and academia.

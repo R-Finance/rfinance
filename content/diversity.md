@@ -13,7 +13,7 @@ areas of study.
 Other than keynotes, all talks are given by people who respond to the Call for
 Presentations. As diversity in presenters is key, the committee would like to 
 make a point of strongly encouraging members of underrepresented minority groups 
-to respond to our [Call for Presentations](https://www.rinfinance.com/cfp/). 
+to respond to our [Call for Presentations](https://www.osqf.org/cfp/). 
 We welcome requests for travel and accommodation funding at the time of 
 submitting your talk, especially if such expenses would otherwise prevent you 
 from attending and presenting.
