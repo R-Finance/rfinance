@@ -13,7 +13,7 @@ All slides will be made publicly available at conference time. Presenters are st
 
 Limited financial assistance for conference admission may be available to presenters. As osQF is a volunteer open source effort from which organizers do not profit, resources are derived from registrations and sponsorship alone. Requests for financial assistance must be made at the time of submission, and the presenter should clearly communicate to us why assistance is being requested. We particularly welcome requests from underrepresented minorities in Quantitative Finance/STEM, and anyone researching under economic hardship.
 
-Submissions will be reviewed and accepted on a rolling basis with a final submission deadline of January 19, 2025. Submitters will be notified via email starting January 26, 2025 of acceptance and presentation length.
+Submissions will be reviewed and accepted on a rolling basis with a final submission deadline of January 31, 2025. Submitters will be notified via email starting February 7, 2025 of acceptance and presentation length.
 
 Submit your proposal at https://go.uic.edu/osQFCFP.
 
