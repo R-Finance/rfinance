@@ -2,7 +2,7 @@ The seventeenth annual Open Source Quantitative Finance conference (osQF, former
 
 Over the past seventeen years, the conference formerly known as R/Finance has included work contributed in many open source programming languages. This year, we've formally changed the name to reflect our commitment to the broader open source programming language community in quantitative finance. As always, we expect to welcome attendees from around the world, host presentations from prominent academics and practitioners. We look forward to another exciting lineup for 2025!
 
-Once again, we've partnered with the [Chicago R User Group](https://www.meetup.com/chicago-r-user-group/) and [PyData Chicago](https://www.meetup.com/pydatachi/) to kickoff the conference on the evening of Thursday, April 10th. A series of relevant talks on quantitative finance will be presented, followed by an opportunity to sample Chicago's vibrant nightlife.
+Once again, we've partnered with the [Chicago R User Group](https://www.meetup.com/chicago-r-user-group/) and [PyData Chicago](https://www.meetup.com/pydatachi/) to kickoff the conference on the evening of Friday, April 11th. A series of relevant talks on quantitative finance will be presented, followed by an opportunity to sample Chicago's vibrant nightlife.
 
 **The [osQF 2025 Call For Presentations](https://go.uic.edu/osQFCFP "osQF 2025") is open!**
 
