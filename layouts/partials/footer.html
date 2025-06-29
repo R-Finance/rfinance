@@ -4,15 +4,33 @@
         {{ if isset .Site.Params "committee" }}
         {{ if .Site.Params.committee.enable_footer }}
         <div class="col-md-12 col-sm-6">
-            <h4>Committee</h4>
+
+            {{ $pagetype := .Params.type }}
+            {{ $pageyear := .Params.linktitle }}
+
             {{ if gt (len .Site.Data.committee) 0 }}
-                {{ range $index, $element := sort .Site.Data.committee "weight" }}
-                    {{ with $element }}
-                    <a href="{{ .url }}" target="_blank">{{ .name }}</a> &nbsp; &nbsp; 
+                {{ if eq $pagetype "archive" }}
+                <h4>Committee</h4>
+                    {{ range $index, $element := sort .Site.Data.committee "weight" }}
+                        {{ if in $element.years (int $pageyear) }}
+                        <a href="{{ $element.url }}" target="_blank">{{ $element.name }}</a> &nbsp; &nbsp; 
+                        {{ end }}
+                    {{ end }}
+                {{ else }}
+                <h4>Committee</h4>
+                    {{ range $index, $element := sort .Site.Data.committee "weight" }}
+                        {{ if eq $element.active "true" }}
+                            <a href="{{ $element.url }}" target="_blank">{{ $element.name }}</a> &nbsp; &nbsp; 
+                        {{ end }}
+                    {{ end }}
+                <h4>Former Committee Members</h4>
+                    {{ range $index, $element := sort .Site.Data.committee "weight" }}
+                        {{ if ne $element.active "true" }}
+                            <a href="{{ $element.url }}" target="_blank">{{ $element.name }}</a> &nbsp; &nbsp; 
+                        {{ end }}
                     {{ end }}
                 {{ end }}
             {{ end }}
-
         </div>
         {{ end }}
         {{ end }}
