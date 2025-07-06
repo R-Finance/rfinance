@@ -1,0 +1,1931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Parsing arbitrary FIX messages in Scala</title>
+<meta name="author" content="Thomas P. Harte"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/night.css" id="theme"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/lib/css/monokai.css"/></head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide" data-background="#FFFFFF"><h2>Parsing arbitrary FIX messages in Scala</h2> <h4>When to engage the type system</h4> <br> <h6>Thomas P. Harte</h6> <br> <h6>Saturday, 2025-04-12 (University of Illinois at Chicago)</h6>
+</section>
+
+
+<section>
+<section id="slide-orgd844ca3" data-background="#FFFFFF">
+<h2 id="orgd844ca3">Disclaimer</h2>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org506688b" data-background="#FFFFFF">
+<h3 id="org506688b">Disclaimer</h3>
+<aside class="notes">
+<ul>
+<li>important things: I am <i>not</i> an investment advisor</li>
+<li>and if you hurt yourself using the Content, well&hellip;</li>
+
+</ul>
+
+</aside>
+
+<p class="none" align="left"><small>
+Thomas P. Harte ("the Author") is providing this presentation and its
+contents 
+("the Content") for educational purposes only at the
+<em>Open Source Quantitative Finance</em> conference, 
+Chicago, IL (2025-04-12).
+The Author is <em>not</em> a registered investment advisor and the Author
+does not purport to offer investment advice nor business advice. The
+opinions expressed in the Content are solely those of the Author, and do
+not necessarily represent the opinions of the Author's employer, nor any
+organization, committee or other group with which the Author is affiliated.
+</small></p>
+
+<p class="fragment fade-in" align="left"><small>
+THE AUTHOR SPECIFICALLY DISCLAIMS ANY PERSONAL LIABILITY, LOSS OR RISK
+INCURRED AS A CONSEQUENCE OF THE USE AND APPLICATION, EITHER DIRECTLY
+OR INDIRECTLY, OF THE CONTENT. THE AUTHOR SPECIFICALLY DISCLAIMS ANY
+REPRESENTATION, WHETHER EXPLICIT OR IMPLIED, THAT APPLYING THE CONTENT
+WILL LEAD TO SIMILAR RESULTS IN A BUSINESS SETTING. THE RESULTS PRESENTED
+IN THE CONTENT ARE NOT NECESSARILY TYPICAL AND SHOULD NOT DETERMINE
+EXPECTATIONS OF FINANCIAL OR BUSINESS RESULTS.
+</small></p>
+
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org260eb56" data-background="#FFFFFF" data-auto-animate>
+<h2 id="org260eb56">Motivation</h2>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org87751c0" data-auto-animate>
+<h3 id="org87751c0">FIX</h3>
+<aside class="notes">
+<ul>
+<li>Financial Information eXchange protocol</li>
+<li>the basis of nearly all messaging in finance (whether real-time or otherwise)</li>
+<li>it encapsulates a means for communicating unstructured data</li>
+<li>we'd like to work with FIX efficiently: i'll show you how we do it</li>
+<li>we ingest about 1/2 TB of FIX each day, so we need a way of introspecting what's in those FIX streams</li>
+
+</ul>
+
+</aside>
+
+
+<div id="org0f659e0" class="figure">
+<p><img src="./img/fix-wikipedia.png" alt="fix-wikipedia.png" width="100%" align="center" />
+</p>
+</div>
+<p><small>
+Source: <a href="https://en.wikipedia.org/wiki/Financial_Information_eXchange">https://en.wikipedia.org/wiki/Financial_Information_eXchange</a>
+</small></p>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org6361303" data-auto-animate>
+<h3 id="org6361303">Functional programming</h3>
+<aside class="notes">
+<ul>
+<li>functional programming languages better exploit modern computer hardware than imperative languages</li>
+
+</ul>
+
+</aside>
+
+<div style="font-size: 70%;">
+<ul>
+<li>hardware has changed
+<ul>
+<li>multi-core processors</li>
+<li>clusters</li>
+
+</ul></li>
+<li>computer languages have changed
+<ul>
+<li>Turing: imperative</li>
+<li>Church: functional</li>
+
+</ul></li>
+<li>functional programming languages 
+<ul>
+<li>immutability of state ("no shared mutable state")</li>
+<li>pure functions / referentially transparent ("no side effects")</li>
+<li>higher-order functions ("first-class objects")</li>
+<li>recursion ("no loops")</li>
+
+</ul></li>
+<li>end game: scalability</li>
+
+</ul>
+</div>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-orgbcdc6ad" data-auto-animate>
+<h3 id="orgbcdc6ad">Functional languages</h3>
+<aside class="notes">
+<ul>
+<li>haskell is the inspiration
+<ul>
+<li>it's compiled</li>
+<li>it's purely functional</li>
+<li>unfortunately it's tough on everyone using it&hellip;</li>
+
+</ul></li>
+<li>Scala 
+<ul>
+<li>is a JVM language</li>
+<li>"i'm anti-JVM" - Committee member ;-)</li>
+<li>i was too!</li>
+
+</ul></li>
+
+</ul>
+
+</aside>
+
+
+<div id="org4c4f180" class="figure">
+<p><img src="./img/haskell.png" alt="haskell.png" class="fragment (appear)" width="50%" align="center" />
+</p>
+</div>
+
+
+<div id="org7bc1b79" class="figure">
+<p><img src="./img/scala.png" alt="scala.png" class="fragment (appear)" width="50%" align="center" />
+</p>
+</div>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-orgbf14fd2" data-auto-animate>
+<h3 id="orgbf14fd2">Scala's killer app</h3>
+<aside class="notes">
+<ul>
+<li>one of the main reasons for my conversion</li>
+<li>Scala is lightweight - more like Python</li>
+<li>Scala reminds me of R</li>
+<li>Scala's type system is incredible</li>
+
+</ul>
+
+</aside>
+
+
+<div id="org1e7fb12" class="figure">
+<p><img src="./img/spark.png" alt="spark.png" width="25%" align="center" />
+</p>
+</div>
+
+<div style="font-size: 70%;">
+<ul>
+<li>Unified engine for large-scale data analytics
+<ul>
+<li>single-node machines</li>
+<li>clusters</li>
+
+</ul></li>
+
+<li>API supports multiple languages
+<ul>
+<li>Scala</li>
+<li>Java</li>
+<li>R</li>
+<li>Python</li>
+<li>Spark SQL</li>
+
+</ul></li>
+
+</ul>
+</div>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-orga27224b" data-auto-animate>
+<h3 id="orga27224b"></h3>
+
+<div id="org4e8f23f" class="figure">
+<p><img src="./img/spark-download.png" alt="spark-download.png" width="75%" align="center" />
+</p>
+</div>
+
+<pre class="fragment fade-in"><font size="1" style="line-height: 125%"><code class="bash">bash$ version=spark-3.5.5-bin-hadoop3-scala2.13
+bash$ url=https://dlcdn.apache.org/spark/spark-3.5.5
+bash$ curl --compressed $url/$version.tgz > $version && tar xvfpz $version 
+</code></font></pre>
+
+<pre class="fragment fade-in"><font size="1" style="line-height: 125%"><code class="bash">% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current                                                         
+                               Dload  Upload   Total   Spent    Left  Speed                                                           
+100  390M  100  390M    0     0  88.5M      0  0:00:04  0:00:04 --:--:-- 89.4M                                                          
+spark-3.5.5-bin-hadoop3-scala2.13/                                                                                                      
+spark-3.5.5-bin-hadoop3-scala2.13/jars/                                                                                                 
+spark-3.5.5-bin-hadoop3-scala2.13/jars/HikariCP-2.5.1.jar                                                                               
+spark-3.5.5-bin-hadoop3-scala2.13/jars/JLargeArrays-1.5.jar                                                                             
+spark-3.5.5-bin-hadoop3-scala2.13/jars/JTransforms-3.1.jar                                                                              
+spark-3.5.5-bin-hadoop3-scala2.13/jars/RoaringBitmap-0.9.45.jar    
+
+[snip, snip]
+
+spark-3.5.5-bin-hadoop3-scala2.13/R/lib/SparkR/help/aliases.rds
+spark-3.5.5-bin-hadoop3-scala2.13/R/lib/SparkR/html/
+spark-3.5.5-bin-hadoop3-scala2.13/R/lib/SparkR/html/00Index.html
+spark-3.5.5-bin-hadoop3-scala2.13/R/lib/SparkR/html/R.css
+spark-3.5.5-bin-hadoop3-scala2.13/R/lib/SparkR/INDEX
+spark-3.5.5-bin-hadoop3-scala2.13/R/lib/sparkr.zip
+</code></font></pre>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org28e8132" data-auto-animate>
+<h3 id="org28e8132"></h3>
+<pre><font size="2.5" style="line-height: 225%"><code class="bash">bash$ $version/bin/spark-shell 
+</code></font></pre>
+
+
+<div id="org254674b" class="figure">
+<p><img src="./img/spark-shell.png" alt="spark-shell.png" class="fragment (appear)" width="125%" align="center" />
+</p>
+</div>
+
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orga76c5df" data-background="#FFFFFF" data-auto-animate>
+<h2 id="orga76c5df">FIX</h2>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org5f5d04b">
+<h3 id="org5f5d04b">FIX is all about XML</h3>
+<aside class="notes">
+<ul>
+<li>by this i mean that everything is <i>specified</i> in XML</li>
+
+</ul>
+
+</aside>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org8627bc5">
+<h4 id="org8627bc5">Snag some FIXML (it's not "real" FIX)</h4>
+<aside class="notes">
+<ul>
+<li>there's even a (largely unused) subset of FIX called "FIXML" that's entirely specificed in XML</li>
+<li>Scala supports <i>native</i> XML: you can do a literal copy of any XML in Scala</li>
+
+</ul>
+
+</aside>
+
+
+<div id="orgba61f05" class="figure">
+<p><img src="./img/fixml.png" alt="fixml.png" width="75%" align="center" />
+</p>
+</div>
+<p><small>
+Source: <a href="https://corp-web.b2bits.com/fixanet/doc/html/html/464a7a55-67c0-483d-95e4-18aa083715b1.htm">FIX Antenna .NET Programmer's Guide</a>
+</small></p>
+
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre  class="fragment fade-in"  ><code class="amm" data-line-numbers='4-10'>import scala.xml.*
+
+val fixml =
+ &lt;FIXML&gt;
+   &lt;Order ID="123456" Side="2" TxnTm="2001-09-11T09:30:47-05:00" Typ="2" Px="93.25" Acct="26522154"&gt;
+     &lt;Hdr Snt="2001-09-11T09:30:47-05:00" PosDup="N" PosRsnd="N" SeqNum="521" SID="AFUNDMGR" TID="ABROKER"/&gt;
+     &lt;Instrmt Sym="IBM" ID="459200101" Src="1"/&gt;
+     &lt;OrdQty Qty="1000"/&gt;
+   &lt;/Order&gt;
+&lt;/FIXML&gt; 
+</code></pre>
+</div>
+</div>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-orgbbdae2c">
+<h4 id="orgbbdae2c">Work the FIXML</h4>
+<aside class="notes">
+<ul>
+<li>use <code>\</code>: dig down to every <code>&lt;Order&gt;</code></li>
+<li>use <code>map</code></li>
+
+</ul>
+
+</aside>
+
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre  class="fragment fade-in"  ><code class="amm" data-line-numbers='5-14'>import scala.xml.*
+
+val fixml =
+    &lt;FIXML&gt;
+    &lt;Order ID="123456" Side="2" TxnTm="2001-09-11T09:30:47-05:00" Typ="2" Px="93.25" Acct="26522154"&gt;
+        &lt;Hdr Snt="2001-09-11T09:30:47-05:00" PosDup="N" PosRsnd="N" SeqNum="521" SID="AFUNDMGR" TID="ABROKER"/&gt;
+        &lt;Instrmt Sym="IBM" ID="459200101" Src="1"/&gt;
+        &lt;OrdQty Qty="1000"/&gt;
+    &lt;/Order&gt;
+    &lt;Order ID="456789" Side="1" TxnTm="2001-09-11T09:30:47-05:00" Typ="2" Px="100.25" Acct="15426522"&gt;
+        &lt;Hdr Snt="2001-09-11T09:30:47-05:00" PosDup="N" PosRsnd="N" SeqNum="522" SID="FUNDMGR-1" TID="BROKERAB"/&gt;
+        &lt;Instrmt Sym="TSLA" ID="459200101" Src="1"/&gt;
+        &lt;OrdQty Qty="100"/&gt;
+    &lt;/Order&gt;
+    &lt;/FIXML&gt;
+
+</code></pre>
+</div>
+</div>
+
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre  class="fragment fade-in"  ><code class="amm" data-line-numbers='4-10'>(fixml \ "Order").map(_ \@ "TxnTm")
+(fixml \ "Order").map(_ \ "Hdr" \@ "Snt")
+</code></pre>
+</div>
+</div>
+
+<pre class="example fragment fade-in"><font size="4" style="line-height: 125%">
+res4_0: Seq[String] = List("2001-09-11T09:30:47-05:00", "2001-09-11T09:30:47-05:00")
+res4_1: Seq[String] = List("2001-09-11T09:30:47-05:00", "2001-09-11T09:30:47-05:00")
+</font></pre>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org4793fc0" data-transition="none">
+<h4 id="org4793fc0">Work the FIXML</h4>
+<aside class="notes">
+<ul>
+<li>assign to variables and use <code>map</code></li>
+
+</ul>
+
+</aside>
+
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre   ><code class="amm" data-line-numbers='5-14'>import scala.xml.*
+
+val fixml =
+    &lt;FIXML&gt;
+    &lt;Order ID="123456" Side="2" TxnTm="2001-09-11T09:30:47-05:00" Typ="2" Px="93.25" Acct="26522154"&gt;
+        &lt;Hdr Snt="2001-09-11T09:30:47-05:00" PosDup="N" PosRsnd="N" SeqNum="521" SID="AFUNDMGR" TID="ABROKER"/&gt;
+        &lt;Instrmt Sym="IBM" ID="459200101" Src="1"/&gt;
+        &lt;OrdQty Qty="1000"/&gt;
+    &lt;/Order&gt;
+    &lt;Order ID="456789" Side="1" TxnTm="2001-09-11T09:30:47-05:00" Typ="2" Px="100.25" Acct="15426522"&gt;
+        &lt;Hdr Snt="2001-09-11T09:30:47-05:00" PosDup="N" PosRsnd="N" SeqNum="522" SID="FUNDMGR-1" TID="BROKERAB"/&gt;
+        &lt;Instrmt Sym="TSLA" ID="459200101" Src="1"/&gt;
+        &lt;OrdQty Qty="100"/&gt;
+    &lt;/Order&gt;
+    &lt;/FIXML&gt;
+
+</code></pre>
+</div>
+</div>
+
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre   ><code class="amm" data-line-numbers='1-2|3-4'>val orders = fixml \ "Order"
+val hdr = orders.map(_ \ "Hdr")
+orders.map(_ \@ "TxnTm")
+hdr.map(_ \@ "Snt")
+</code></pre>
+</div>
+</div>
+
+<pre class="example fragment fade-in"><font size="4" style="line-height: 125%">
+res6_2: Seq[String] = List("2001-09-11T09:30:47-05:00", "2001-09-11T09:30:47-05:00")
+res6_3: Seq[String] = List("2001-09-11T09:30:47-05:00", "2001-09-11T09:30:47-05:00")
+</font></pre>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org667731f" data-transition="none">
+<h4 id="org667731f">Work the FIXML</h4>
+<aside class="notes">
+<ul>
+<li>assign to variables and <code>map</code></li>
+<li>idiomatic Scala: <code>for</code> comprehension
+(widespread in Scala for data-pipelining)</li>
+
+</ul>
+
+</aside>
+
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre   ><code class="amm" data-line-numbers='5-14'>import scala.xml.*
+
+val fixml =
+    &lt;FIXML&gt;
+    &lt;Order ID="123456" Side="2" TxnTm="2001-09-11T09:30:47-05:00" Typ="2" Px="93.25" Acct="26522154"&gt;
+        &lt;Hdr Snt="2001-09-11T09:30:47-05:00" PosDup="N" PosRsnd="N" SeqNum="521" SID="AFUNDMGR" TID="ABROKER"/&gt;
+        &lt;Instrmt Sym="IBM" ID="459200101" Src="1"/&gt;
+        &lt;OrdQty Qty="1000"/&gt;
+    &lt;/Order&gt;
+    &lt;Order ID="456789" Side="1" TxnTm="2001-09-11T09:30:47-05:00" Typ="2" Px="100.25" Acct="15426522"&gt;
+        &lt;Hdr Snt="2001-09-11T09:30:47-05:00" PosDup="N" PosRsnd="N" SeqNum="522" SID="FUNDMGR-1" TID="BROKERAB"/&gt;
+        &lt;Instrmt Sym="TSLA" ID="459200101" Src="1"/&gt;
+        &lt;OrdQty Qty="100"/&gt;
+    &lt;/Order&gt;
+    &lt;/FIXML&gt;
+
+</code></pre>
+</div>
+</div>
+
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre   ><code class="amm" data-line-numbers='1-4'>for {
+    order &lt;- fixml \ "Order"
+    hdr &lt;- order \ "Hdr"
+} yield (order \@ "TxnTm", hdr \@ "Snt")
+</code></pre>
+</div>
+</div>
+
+<pre class="example fragment fade-in"><font size="4" style="line-height: 125%">
+res11: Seq[(String, String)] = List(
+  ("2001-09-11T09:30:47-05:00", "2001-09-11T09:30:47-05:00"),
+  ("2001-09-11T09:30:47-05:00", "2001-09-11T09:30:47-05:00")
+)
+</font></pre>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org0db937a">
+<h3 id="org0db937a">FIX doesn't look like FIXML</h3>
+<div class="outline-text-3" id="text-org0db937a">
+</div>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org9180f31">
+<h4 id="org9180f31">Snag some "real" FIX</h4>
+<aside class="notes">
+<ul>
+<li>(close to) an actual FIX message</li>
+<li>FIX uses SOH character (ASCII value 1) to separate fields</li>
+<li>(a field is a tag-value pair)</li>
+<li>SOH is unprintable (and useful for that fact)</li>
+<li>but because SOH is unprintable we typically use "|" instead</li>
+
+</ul>
+
+</aside>
+
+
+<div id="org565c9e6" class="figure">
+<p><img src="./img/real-fix.png" alt="real-fix.png" width="100%" align="center" />
+</p>
+</div>
+<p><small>
+Source: <a href="https://corp-web.b2bits.com/fixanet/doc/html/html/464a7a55-67c0-483d-95e4-18aa083715b1.htm">FIX Antenna .NET Programmer's Guide</a>
+</small></p>
+
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre  class="fragment fade-in"  ><code class="amm" data-line-numbers='2-4|1,5'>val fix = """
+8=FIX.4.2&lt;SOH&gt;9=153&lt;SOH&gt;35=D&lt;SOH&gt;49=BLP&lt;SOH&gt;56=SCHB&lt;SOH&gt;34=1&lt;SOH&gt;50=30737&lt;SOH&gt;97=Y&lt;SOH&gt;
+52=20000809-20:20:50&lt;SOH&gt;11=90001008&lt;SOH&gt;1=10030003&lt;SOH&gt;21=2&lt;SOH&gt;55=TESTA&lt;SOH&gt;54=1&lt;SOH&gt;38=4000&lt;SOH&gt;
+40=2&lt;SOH&gt;59=0&lt;SOH&gt;44=30&lt;SOH&gt;47=I&lt;SOH&gt;60=20000809-18:20:32&lt;SOH&gt;10=061&lt;SOH&gt;
+""".replace("\n", "").replace("&lt;SOH&gt;", "|")
+</code></pre>
+</div>
+</div>
+
+<pre><font size="1" style="line-height: 125%"><code class="bash fragment fade-in">
+fix: String = "8=FIX.4.2|9=153|35=D|49=BLP|56=SCHB|34=1|50=30737|97=Y|52=20000809-20:20:50|11=90001008|1=10030003|21=2|55=TESTA|54=1|38=4000|40=2|59=0|44=30|47=I|60=20000809-18:20:32|10=061|"
+
+</code></font></pre>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org95d88d5" data-transition="none">
+<h4 id="org95d88d5">Work the "real" FIX</h4>
+<aside class="notes">
+<ul>
+<li>start with our FIX string</li>
+<li>split it</li>
+<li>filter on <i>known</i> tags 60(TransactTime), 52(SendingTime)</li>
+<li>problem in decoding FIX:
+<ul>
+<li>we need to know which tags to look for</li>
+<li>we need to know what each tag means</li>
+
+</ul></li>
+
+</ul>
+
+</aside>
+
+<pre><font size="1" style="line-height: 125%"><code class="bash fragment fade-in">
+fix: String = "8=FIX.4.2|9=153|35=D|49=BLP|56=SCHB|34=1|50=30737|97=Y|52=20000809-20:20:50|11=90001008|1=10030003|21=2|55=TESTA|54=1|38=4000|40=2|59=0|44=30|47=I|60=20000809-18:20:32|10=061|"
+
+</code></font></pre>
+
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre  class="fragment fade-in"  ><code class="amm" data-line-numbers='1|2'>fix.split('|')
+fix.split('|').filter(x =&gt; x.startsWith("60=") | x.startsWith("52=")).map(_.substring(3))
+</code></pre>
+</div>
+</div>
+
+<pre><font size="1" style="line-height: 125%"><code class="bash fragment fade-in" data-line-numbers="1-23|10,21|24">res25_1: Array[String] = Array(
+  "8=FIX.4.2",
+  "9=153",
+  "35=D",
+  "49=BLP",
+  "56=SCHB",
+  "34=1",
+  "50=30737",
+  "97=Y",
+  "52=20000809-20:20:50",
+  "11=90001008",
+  "1=10030003",
+  "21=2",
+  "55=TESTA",
+  "54=1",
+  "38=4000",
+  "40=2",
+  "59=0",
+  "44=30",
+  "47=I",
+  "60=20000809-18:20:32",
+  "10=061"
+)
+res25_2: Array[String] = Array("20000809-20:20:50", "20000809-18:20:32")
+</code></font></pre>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org8e3bff0">
+<h3 id="org8e3bff0">FIX Specs</h3>
+<aside class="notes">
+<ul>
+<li>if you want to know what a tag-value pair ("field") is, you need a FIX specification</li>
+
+</ul>
+
+</aside>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org2d9d6bd">
+<h4 id="org2d9d6bd">"Canonical" reference</h4>
+<aside class="notes">
+<ul>
+<li>the FIX Trading Community has something close to a standard</li>
+<li>but FIX is more of a suggestion than it is a "standard"</li>
+<li>Tag 60(TransactTime)</li>
+
+</ul>
+
+</aside>
+
+
+<div id="orge5a61af" class="figure">
+<p><img src="./img/fix-tag-60.png" alt="fix-tag-60.png" width="80%" align="center" />
+</p>
+</div>
+<p><small>
+Source: <a href="https://fiximate.fixtrading.org/">FIXimate: FIX Interactive Message And Tag Explorer</a>
+</small></p>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-orge8c58e1" data-transition="none">
+<h4 id="orge8c58e1">"Canonical" reference</h4>
+<aside class="notes">
+<ul>
+<li>Tag 52(SendingTime)</li>
+
+</ul>
+
+</aside>
+
+
+<div id="org2fc9c14" class="figure">
+<p><img src="./img/fix-tag-52.png" alt="fix-tag-52.png" width="80%" align="center" />
+</p>
+</div>
+<p><small>
+Source: <a href="https://fiximate.fixtrading.org/">FIXimate: FIX Interactive Message And Tag Explorer</a>
+</small></p>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org664701c">
+<h4 id="org664701c">Actual reference (XML again)</h4>
+<aside class="notes">
+<ul>
+<li>note that there are various versions of FIX: FIX40.xml, FIX41.xml &amp;c</li>
+<li>all equities trading is based on FIX42.xml</li>
+<li>fixed income products take us into deep water: FrankenFIX
+<ul>
+<li>much use of user-defined fields</li>
+<li>nothing as well established as in equities or futures trading</li>
+
+</ul></li>
+<li>but we'll continue with the FIX 4.2 example</li>
+<li>the latest FIX spec if FIX 5.0 Service Pack 2</li>
+<li>quickfix is a great package (in C++, Python, C#, and Java)</li>
+
+</ul>
+
+</aside>
+
+
+<div id="org42ca57c" class="figure">
+<p><img src="./img/fix-xml-spec-50sp2.png" alt="fix-xml-spec-50sp2.png" width="60%" align="center" />
+</p>
+</div>
+<p><small>
+Source: <a href="https://github.com/quickfix/quickfix/blob/master/spec/FIX50SP2.xml"> <code>quickfix/spec/FIX50SP2.xml</code></a>
+</small></p>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org0242117">
+<h4 id="org0242117">Anatomy of an XML FIX spec</h4>
+<aside class="notes">
+<ul>
+<li>using the Lisp package <code>noxml-fold-mode</code> for navigation</li>
+
+</ul>
+
+</aside>
+
+
+<div id="org6d0e745" class="figure">
+<p><img src="./img/fix50sp2-gross-anatomy-1.png" alt="fix50sp2-gross-anatomy-1.png" width="60%" align="center" />
+</p>
+</div>
+<p><small>
+Source: <a href="https://github.com/quickfix/quickfix/blob/master/spec/FIX50SP2.xml"> <code>quickfix/spec/FIX50SP2.xml</code></a>
+</small></p>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-orgc26f1dc" data-transition="none">
+<h4 id="orgc26f1dc">Anatomy of an XML FIX spec</h4>
+<aside class="notes">
+<ul>
+<li>digging into <code>fields</code></li>
+<li>a field can have tag 3(AdvRefID), say, with a value of whatever the Advertised Trade Reference ID is (represented as a <code>STRING</code>)</li>
+<li>a field can have an enumerated value 4(AdvSide), say, with whatever the Broker's side of the Advertised Trade is (represented as one of <code>B</code>, <code>S</code>, <code>T</code>, or <code>X</code>)</li>
+
+</ul>
+
+</aside>
+
+
+<div id="orge57f9c6" class="figure">
+<p><img src="./img/fix50sp2-gross-anatomy-2.png" alt="fix50sp2-gross-anatomy-2.png" width="60%" align="center" />
+</p>
+</div>
+<p><small>
+Source: <a href="https://github.com/quickfix/quickfix/blob/master/spec/FIX50SP2.xml"> <code>quickfix/spec/FIX50SP2.xml</code></a>
+</small></p>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org643f4e7" data-transition="none">
+<h4 id="org643f4e7">Anatomy of an XML FIX spec</h4>
+<aside class="notes">
+<ul>
+<li>here's our friend 60(TransactTime)</li>
+
+</ul>
+
+</aside>
+
+
+<div id="org6042195" class="figure">
+<p><img src="./img/fix50sp2-gross-anatomy-tag-60.png" alt="fix50sp2-gross-anatomy-tag-60.png" width="60%" align="center" />
+</p>
+</div>
+<p><small>
+Source: <a href="https://github.com/quickfix/quickfix/blob/master/spec/FIX50SP2.xml"> <code>quickfix/spec/FIX50SP2.xml</code></a>
+</small></p>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-orgd06ff6c" data-transition="none">
+<h4 id="orgd06ff6c">Anatomy of an XML FIX spec</h4>
+<aside class="notes">
+<ul>
+<li>and our other friend 52(SendingTime)</li>
+
+</ul>
+
+</aside>
+
+
+<div id="org5540779" class="figure">
+<p><img src="./img/fix50sp2-gross-anatomy-tag-52.png" alt="fix50sp2-gross-anatomy-tag-52.png" width="60%" align="center" />
+</p>
+</div>
+<p><small>
+Source: <a href="https://github.com/quickfix/quickfix/blob/master/spec/FIX50SP2.xml"> <code>quickfix/spec/FIX50SP2.xml</code></a>
+</small></p>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org9687ea4">
+<h4 id="org9687ea4">Gross Anatomy of an XML FIX spec</h4>
+<aside class="notes">
+<ul>
+<li>i've not come across a good explanation of what's in a FIX spec, so i had to do a lot of poking around myself</li>
+<li>this table summarizes what i learned: it probably deserves a lecture all to itself</li>
+<li>note, in particular, the cyclicality in <code>group</code></li>
+<li>we'll stick to what's in <code>fields</code> today</li>
+
+</ul>
+
+</aside>
+
+
+<div id="org36ea831" class="figure">
+<p><img src="./img/gross-anatomy-summary-table.png" alt="gross-anatomy-summary-table.png" width="100%" align="center" />
+</p>
+</div>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-orgb9bd528">
+<h4 id="orgb9bd528">Work the "real" FIX (<code>fields</code> only)</h4>
+<aside class="notes">
+<ul>
+<li>so if we're sticking to <code>fields</code>&hellip;</li>
+<li>we'll be interpreting things like what 60(TransactTime) and 52(SendingTime) mean</li>
+<li><i>i.e.</i> we'll be mapping tags to field definitions and extracting relevant information</li>
+
+</ul>
+
+</aside>
+
+<pre><font size="1" style="line-height: 125%"><code class="bash">
+fix: String = "8=FIX.4.2|9=153|35=D|49=BLP|56=SCHB|34=1|50=30737|97=Y|52=20000809-20:20:50|11=90001008|1=10030003|21=2|55=TESTA|54=1|38=4000|40=2|59=0|44=30|47=I|60=20000809-18:20:32|10=061|"
+
+</code></font></pre>
+
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre   ><code class="amm" data-line-numbers='2'>fix.split('|')
+fix.split('|').filter(x =&gt; x.startsWith("60=") | x.startsWith("52=")).map(_.substring(3))
+</code></pre>
+</div>
+</div>
+
+<pre><font size="1" style="line-height: 125%"><code class="bash" data-line-numbers="10,21|24">res25_1: Array[String] = Array(
+  "8=FIX.4.2",
+  "9=153",
+  "35=D",
+  "49=BLP",
+  "56=SCHB",
+  "34=1",
+  "50=30737",
+  "97=Y",
+  "52=20000809-20:20:50",
+  "11=90001008",
+  "1=10030003",
+  "21=2",
+  "55=TESTA",
+  "54=1",
+  "38=4000",
+  "40=2",
+  "59=0",
+  "44=30",
+  "47=I",
+  "60=20000809-18:20:32",
+  "10=061"
+)
+res25_2: Array[String] = Array("20000809-20:20:50", "20000809-18:20:32")
+</code></font></pre>
+
+<p class="text fragment fade-in"><small>
+Map tags to <code>field</code> definitions
+</small></p>
+
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-org9b8acb8" data-background="#FFFFFF" data-auto-animate>
+<h2 id="org9b8acb8">Mapping tags to <code>field</code> definitions</h2>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org3860ecf">
+<h3 id="org3860ecf">Read FIX 4.2</h3>
+<div class="outline-text-3" id="text-org3860ecf">
+</div>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-orge6cca62">
+<h4 id="orge6cca62">Read FIX 4.2 spec</h4>
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre   ><code class="amm" data-line-numbers='-|5'>def get_xml_specs() = {
+    Seq(
+        "FIX40.xml",
+        "FIX41.xml",
+        "FIX42.xml",
+        "FIX43.xml",
+        "FIX44.xml",
+        "FIX50.xml",
+        "FIXT11.xml",
+        "FIX50SP1.xml",
+        "FIX50SP2.xml",
+    )
+}
+
+def get_xml_filename(name:String="FIX50SP2.xml") = {
+    assert(get_xml_specs().filter(_ == name).length != 0)
+    val folder = os.pwd/"fix-specs"
+    val filename = folder / name
+
+    filename
+}
+
+def get_xml(name:String="FIX50SP2.xml") = {
+    XML.loadFile(get_xml_filename(name).toString)
+}
+</code></pre>
+</div>
+</div>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org9d69c13" data-transition="none">
+<h4 id="org9d69c13">Read FIX 4.2 spec</h4>
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre   ><code class="amm" >get_xml("FIX42.xml")
+</code></pre>
+</div>
+</div>
+
+<div style="font-size: 50%;">
+<pre class="example" id="org2a9886c">
+res36: Elem = &lt;fix type="FIX" major="4" minor="2" servicepack="0"&gt;
+ &lt;header&gt;
+  &lt;field name="BeginString" required="Y"/&gt;
+  &lt;field name="BodyLength" required="Y"/&gt;
+  &lt;field name="MsgType" required="Y"/&gt;
+  &lt;field name="SenderCompID" required="Y"/&gt;
+  &lt;field name="TargetCompID" required="Y"/&gt;
+  &lt;field name="OnBehalfOfCompID" required="N"/&gt;
+  &lt;field name="DeliverToCompID" required="N"/&gt;
+  &lt;field name="SecureDataLen" required="N"/&gt;
+  &lt;field name="SecureData" required="N"/&gt;
+  &lt;field name="MsgSeqNum" required="Y"/&gt;
+  &lt;field name="SenderSubID" required="N"/&gt;
+  &lt;field name="SenderLocationID" required="N"/&gt;
+  &lt;field name="TargetSubID" required="N"/&gt;
+  &lt;field name="TargetLocationID" required="N"/&gt;
+  &lt;field name="OnBehalfOfSubID" required="N"/&gt;
+  &lt;field name="OnBehalfOfLocationID" required="N"/&gt;
+  &lt;field name="DeliverToSubID" required="N"/&gt;
+  &lt;field name="DeliverToLocationID" required="N"/&gt;
+  &lt;field name="PossDupFlag" required="N"/&gt;
+  &lt;field name="PossResend" required="N"/&gt;
+  &lt;field name="SendingTime" required="Y"/&gt;
+  &lt;field name="OrigSendingTime" required="N"/&gt;
+  &lt;field name="XmlDataLen" required="N"/&gt;
+  &lt;field name="XmlData" required="N"/&gt;
+  &lt;field name="MessageEncoding" required="N"/&gt;
+  &lt;field name="LastMsgSeqNumProcessed" required="N"/&gt;
+  &lt;field name="OnBehalfOfSendingTime" required="N"/&gt;
+...
+</pre>
+</div>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org0c6c596">
+<h3 id="org0c6c596">FIX 4.2: fields</h3>
+<div class="outline-text-3" id="text-org0c6c596">
+</div>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-orge9fa9f1" data-transition="none">
+<h4 id="orge9fa9f1">Gather fields</h4>
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre   ><code class="amm" >val xml = get_xml("FIX42.xml")
+val fields = xml \ "fields" \ "field"
+</code></pre>
+</div>
+</div>
+
+<div style="font-size: 50%;">
+<pre class="example" id="orgc9de048">
+fields: NodeSeq = Seq(
+  &lt;field number="1" name="Account" type="STRING"/&gt;,
+  &lt;field number="2" name="AdvId" type="STRING"/&gt;,
+  &lt;field number="3" name="AdvRefID" type="STRING"/&gt;,
+  &lt;field number="4" name="AdvSide" type="CHAR"&gt;
+   &lt;value enum="B" description="BUY"/&gt;
+   &lt;value enum="S" description="SELL"/&gt;
+   &lt;value enum="T" description="TRADE"/&gt;
+   &lt;value enum="X" description="CROSS"/&gt;
+  &lt;/field&gt;,
+  &lt;field number="5" name="AdvTransType" type="STRING"&gt;
+   &lt;value enum="C" description="CANCEL"/&gt;
+   &lt;value enum="N" description="NEW"/&gt;
+   &lt;value enum="R" description="REPLACE"/&gt;
+  &lt;/field&gt;,
+  &lt;field number="6" name="AvgPx" type="PRICE"/&gt;,
+  &lt;field number="7" name="BeginSeqNo" type="INT"/&gt;,
+  &lt;field number="8" name="BeginString" type="STRING"/&gt;,
+  &lt;field number="9" name="BodyLength" type="INT"/&gt;,
+  &lt;field number="10" name="CheckSum" type="STRING"/&gt;,
+  &lt;field number="11" name="ClOrdID" type="STRING"/&gt;,
+  &lt;field number="12" name="Commission" type="AMT"/&gt;,
+  &lt;field number="13" name="CommType" type="CHAR"&gt;
+   &lt;value enum="1" description="PER_UNIT"/&gt;
+   &lt;value enum="2" description="PERCENT"/&gt;
+   &lt;value enum="3" description="ABSOLUTE"/&gt;
+  &lt;/field&gt;,
+  &lt;field number="14" name="CumQty" type="QTY"/&gt;,
+  &lt;field number="15" name="Currency" type="CURRENCY"/&gt;,
+...
+</pre>
+</div>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org08ede5e">
+<h4 id="org08ede5e">Map methods</h4>
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre   ><code class="amm" >val fieldTagMap = (() =&gt; {
+    fields.
+        map(x =&gt; (x \@ "number", x \@ "name", x \@ "type")).
+        map(x =&gt; (x._1.toInt -&gt; (x._1.toInt, x._2, x._3))).
+        toMap
+})()
+
+val fieldNameMap = (() =&gt; {
+    fields.
+        map(x =&gt; (x \@ "number", x \@ "name", x \@ "type")).
+        map(x =&gt; (x._2 -&gt; (x._1.toInt, x._2, x._3))).
+        toMap
+})()
+</code></pre>
+</div>
+</div>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org2a49cae" data-transition="none">
+<h4 id="org2a49cae">Tag (<code>Int</code>) to field</h4>
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre   ><code class="amm" data-line-numbers='1-2'>fieldTagMap(60)
+fieldTagMap(52)
+</code></pre>
+</div>
+</div>
+
+<div style="font-size: 50%; ">
+<pre class="example" id="org7a4551f">
+res48: (Int, String, String) = (60, "TransactTime", "UTCTIMESTAMP")
+res49: (Int, String, String) = (52, "SendingTime", "UTCTIMESTAMP")
+</pre>
+</div>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-orgcc2d1b8" data-transition="none">
+<h4 id="orgcc2d1b8">Field name (<code>String</code>) to field</h4>
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre   ><code class="amm" data-line-numbers='1-2'>fieldNameMap("TransactTime")
+fieldNameMap("SendingTime")
+</code></pre>
+</div>
+</div>
+
+<div style="font-size: 50%; ">
+<pre class="example" id="orge13a686">
+res51: (Int, String, String) = (60, "TransactTime", "UTCTIMESTAMP")
+res52: (Int, String, String) = (52, "SendingTime", "UTCTIMESTAMP")
+</pre>
+</div>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org45d4b0f">
+<h4 id="org45d4b0f">Cache the fields</h4>
+<aside class="notes">
+<ul>
+<li>we'll create a <code>case class</code> to store the information that we want (instead of a tuple)</li>
+<li>most of the work is done in the CTOR-like method <code>apply</code> within the companion <code>object</code>
+(which functions like a set of static methods for the class)</li>
+
+</ul>
+
+</aside>
+
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre   ><code class="amm" data-line-numbers='1|6-11|3-4|13-36'>val field_cache = scala.collection.mutable.Map[String,Field]()
+
+def get_field(number:String) =
+    field_cache.getOrElseUpdate(number, Field.apply(number, fields))
+
+case class Field(
+    number:String,
+    name:String,
+    fixType:String,
+    value:Map[String,String]
+)
+
+object Field {
+    def apply(number:String, fields:NodeSeq):Field = {
+        val field = fields.filter(x =&gt; x \@ "number" == number)
+
+        val empty_value = Map[String,String]()
+        val empty_field = Field(number, "[N/A]", "[N/A]", empty_value)
+        if (field.length == 0) return(empty_field)
+
+        val name = field \@ "name" 
+        val fixType = field \@ "type"
+
+        val value = (() =&gt; {
+            val value = field \\ "value"
+            if (value.length==0) {
+                empty_value 
+            }
+            else {
+                value.map(x =&gt; (x \@ "enum", x \@ "description")).toMap 
+            }
+        }:Map[String,String])()
+
+        Field(number, name, fixType, value)
+    }
+}
+</code></pre>
+</div>
+</div>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org0b9ffa4" data-transition="none">
+<h4 id="org0b9ffa4">Retrieve <code>Field</code> from the cache</h4>
+<aside class="notes">
+<ul>
+<li>the net result is better than tuple</li>
+<li>and the cache makes it lightning fast</li>
+
+</ul>
+
+</aside>
+
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre   ><code class="amm" data-line-numbers='1-2'>get_field("60")
+get_field("52")
+</code></pre>
+</div>
+</div>
+
+<div style="font-size: 50%; ">
+<pre class="example" id="org7533480">
+res72: Field = Field(number = "60", name = "TransactTime", fixType = "UTCTIMESTAMP", value = Map())
+res73: Field = Field(number = "52", name = "SendingTime", fixType = "UTCTIMESTAMP", value = Map())
+</pre>
+</div>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-orgb000dc1" data-transition="none">
+<h4 id="orgb000dc1">Retrieve <code>Field</code> from the cache</h4>
+<aside class="notes">
+<ul>
+<li>note</li>
+<li>and the cache makes it lightning fast</li>
+
+</ul>
+
+</aside>
+
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre   ><code class="amm" data-line-numbers='1-2'>get_field("35")
+</code></pre>
+</div>
+</div>
+
+<div style="font-size: 50%; ">
+<pre class="example" id="org05dd1c3">
+res74: Field = Field(
+  number = "35",
+  name = "MsgType",
+  fixType = "STRING",
+  value = HashMap(
+    "8" -&gt; "EXECUTION_REPORT",
+    "4" -&gt; "SEQUENCE_RESET",
+    "f" -&gt; "SECURITY_STATUS",
+    "F" -&gt; "ORDER_CANCEL_REQUEST",
+    "5" -&gt; "LOGOUT",
+    "i" -&gt; "MASS_QUOTE",
+    "P" -&gt; "ALLOCATION_INSTRUCTION_ACK",
+    "0" -&gt; "HEARTBEAT",
+    "H" -&gt; "ORDER_STATUS_REQUEST",
+    "7" -&gt; "ADVERTISEMENT",
+    "3" -&gt; "REJECT",
+    "k" -&gt; "BID_REQUEST",
+    "D" -&gt; "NEW_ORDER_SINGLE",
+    "E" -&gt; "NEW_ORDER_LIST",
+    "e" -&gt; "SECURITY_STATUS_REQUEST",
+    "X" -&gt; "MARKET_DATA_INCREMENTAL_REFRESH",
+    "9" -&gt; "ORDER_CANCEL_REJECT",
+    "N" -&gt; "LIST_STATUS",
+    "j" -&gt; "BUSINESS_MESSAGE_REJECT",
+    "T" -&gt; "SETTLEMENT_INSTRUCTIONS",
+    "Y" -&gt; "MARKET_DATA_REQUEST_REJECT",
+    "J" -&gt; "ALLOCATION_INSTRUCTION",
+    "A" -&gt; "LOGON",
+    "a" -&gt; "QUOTE_STATUS_REQUEST",
+...
+</pre>
+</div>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-orga9c2be2">
+<h3 id="orga9c2be2">Parse FIX</h3>
+<div class="outline-text-3" id="text-orga9c2be2">
+</div>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-orga9976f3">
+<h4 id="orga9976f3">Parse a FIX message</h4>
+<aside class="notes">
+<ul>
+<li>it's virtually the same as what we did earlier: we use the <code>split</code> method (<code>String</code>)</li>
+
+</ul>
+
+</aside>
+
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre   ><code class="amm" >def parse(msg:String, sep:Char='|') = {
+    val tokens = msg.split(sep)
+
+    tokens.map((x) =&gt; {
+        val s = x.split('=')
+        val tag = s(0); val value = s(1)
+        val field = get_field(tag)
+        val description = field.value.getOrElse(value, "")
+
+        (tag, field.name, value, description)
+    })
+}
+</code></pre>
+</div>
+</div>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org68f67a6" data-transition="none">
+<h4 id="org68f67a6">Parse a FIX message</h4>
+<aside class="notes">
+<ul>
+<li>the result is a little message (but we can clean that up for viewing)</li>
+
+</ul>
+
+</aside>
+
+<pre><font size="1" style="line-height: 125%"><code class="bash">
+fix: String = "8=FIX.4.2|9=153|35=D|49=BLP|56=SCHB|34=1|50=30737|97=Y|52=20000809-20:20:50|11=90001008|1=10030003|21=2|55=TESTA|54=1|38=4000|40=2|59=0|44=30|47=I|60=20000809-18:20:32|10=061|"
+
+</code></font></pre>
+
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre   ><code class="amm" >parse(fix)
+</code></pre>
+</div>
+</div>
+
+<div style="font-size: 50%; ">
+<pre class="example" id="org48f3a4c">
+res79: Array[(String, String, String, String)] = Array(
+  ("8", "BeginString", "FIX.4.2", ""),
+  ("9", "BodyLength", "153", ""),
+  ("35", "MsgType", "D", "NEW_ORDER_SINGLE"),
+  ("49", "SenderCompID", "BLP", ""),
+  ("56", "TargetCompID", "SCHB", ""),
+  ("34", "MsgSeqNum", "1", ""),
+  ("50", "SenderSubID", "30737", ""),
+  ("97", "PossResend", "Y", "YES"),
+  ("52", "SendingTime", "20000809-20:20:50", ""),
+  ("11", "ClOrdID", "90001008", ""),
+  ("1", "Account", "10030003", ""),
+  ("21", "HandlInst", "2", "AUTOMATED_EXECUTION_INTERVENTION_OK"),
+  ("55", "Symbol", "TESTA", ""),
+  ("54", "Side", "1", "BUY"),
+  ("38", "OrderQty", "4000", ""),
+  ("40", "OrdType", "2", "LIMIT"),
+  ("59", "TimeInForce", "0", "DAY"),
+  ("44", "Price", "30", ""),
+  ("47", "Rule80A", "I", "INDIVIDUAL_INVESTOR"),
+  ("60", "TransactTime", "20000809-18:20:32", ""),
+  ("10", "CheckSum", "061", "")
+)
+</pre>
+</div>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-orgdffd523">
+<h4 id="orgdffd523">Show as dataframe</h4>
+<aside class="notes">
+<ul>
+<li>a dataframe-like presentation is more palatable</li>
+
+</ul>
+
+</aside>
+
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre   ><code class="amm" >def showAsDF(msg:String, sep:Char='|'): Unit = {
+    val p = parse(msg, sep)
+    val cn = Seq("tag", "field name", "value", "description")
+
+    println(f"${cn(0)}%6s${cn(1)}%30s${cn(2)}%40s${cn(3)}%50s")
+    for (el &lt;- p) println(f"${el(0)}%6s${el(1)}%30s${el(2)}%40s${el(3)}%50s")
+}
+</code></pre>
+</div>
+</div>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org9b69c14" data-transition="none">
+<h4 id="org9b69c14">Show as dataframe</h4>
+<aside class="notes">
+<ul>
+<li>note how 60(TransactTime) and 52(SendingTime) are just tag-value pairs</li>
+<li>but 35(MsgType)=D(New<sub>ORDER</sub><sub>SINGLE</sub>) uses an enumerated value</li>
+<li>the <code>description</code> contains the enumerated values</li>
+
+</ul>
+
+</aside>
+
+<pre><font size="1" style="line-height: 125%"><code class="bash">
+fix: String = "8=FIX.4.2|9=153|35=D|49=BLP|56=SCHB|34=1|50=30737|97=Y|52=20000809-20:20:50|11=90001008|1=10030003|21=2|55=TESTA|54=1|38=4000|40=2|59=0|44=30|47=I|60=20000809-18:20:32|10=061|"
+
+</code></font></pre>
+
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre   ><code class="amm" >showAsDF(fix)
+</code></pre>
+</div>
+</div>
+
+<div style="font-size: 50%; ">
+<pre class="example" id="orgb4a6429">
+tag                    field name                                   value                                       description
+  8                   BeginString                                 FIX.4.2                                                  
+  9                    BodyLength                                     153                                                  
+ 35                       MsgType                                       D                                  NEW_ORDER_SINGLE
+ 49                  SenderCompID                                     BLP                                                  
+ 56                  TargetCompID                                    SCHB                                                  
+ 34                     MsgSeqNum                                       1                                                  
+ 50                   SenderSubID                                   30737                                                  
+ 97                    PossResend                                       Y                                               YES
+ 52                   SendingTime                       20000809-20:20:50                                                  
+ 11                       ClOrdID                                90001008                                                  
+  1                       Account                                10030003                                                  
+ 21                     HandlInst                                       2               AUTOMATED_EXECUTION_INTERVENTION_OK
+ 55                        Symbol                                   TESTA                                                  
+ 54                          Side                                       1                                               BUY
+ 38                      OrderQty                                    4000                                                  
+ 40                       OrdType                                       2                                             LIMIT
+ 59                   TimeInForce                                       0                                               DAY
+ 44                         Price                                      30                                                  
+ 47                       Rule80A                                       I                               INDIVIDUAL_INVESTOR
+ 60                  TransactTime                       20000809-18:20:32                                                  
+ 10                      CheckSum                                     061                                                  
+</pre>
+</div>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org0a1f478">
+<h4 id="org0a1f478">To ordered map</h4>
+<aside class="notes">
+<ul>
+<li>finally, we what we want is something like an ordered map</li>
+<li>we have the tag translated into the field name</li>
+<li>and we have the value associated with the tag (or an enumerated value for <i>e.g.</i> 35(MsgType)=D(NEW<sub>ORDER</sub><sub>SINGLE</sub>))</li>
+<li>it's still not quite in the format we need to do bulk data analysis&hellip;</li>
+
+</ul>
+
+</aside>
+
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre   ><code class="amm" >import scala.collection.mutable.LinkedHashMap
+
+def toLinkedHashMap(msg:String, sep:Char='|') = {
+    val o = LinkedHashMap[String,String]()
+    parse(msg).map(
+        x =&gt; o.addOne(x(1), if x(3).length &gt; 0 then x(3) else x(2))
+    )
+
+    o
+}
+</code></pre>
+</div>
+</div>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org3cc5f84" data-transition="none">
+<h4 id="org3cc5f84">To ordered map</h4>
+<pre><font size="1" style="line-height: 125%"><code class="bash">
+fix: String = "8=FIX.4.2|9=153|35=D|49=BLP|56=SCHB|34=1|50=30737|97=Y|52=20000809-20:20:50|11=90001008|1=10030003|21=2|55=TESTA|54=1|38=4000|40=2|59=0|44=30|47=I|60=20000809-18:20:32|10=061|"
+
+</code></font></pre>
+
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre   ><code class="amm" >toLinkedHashMap(fix)
+</code></pre>
+</div>
+</div>
+
+<div style="font-size: 50%; ">
+<pre class="example" id="org955c56f">
+res89: LinkedHashMap[String, String] = LinkedHashMap(
+  "BeginString" -&gt; "FIX.4.2",
+  "BodyLength" -&gt; "153",
+  "MsgType" -&gt; "NEW_ORDER_SINGLE",
+  "SenderCompID" -&gt; "BLP",
+  "TargetCompID" -&gt; "SCHB",
+  "MsgSeqNum" -&gt; "1",
+  "SenderSubID" -&gt; "30737",
+  "PossResend" -&gt; "YES",
+  "SendingTime" -&gt; "20000809-20:20:50",
+  "ClOrdID" -&gt; "90001008",
+  "Account" -&gt; "10030003",
+  "HandlInst" -&gt; "AUTOMATED_EXECUTION_INTERVENTION_OK",
+  "Symbol" -&gt; "TESTA",
+  "Side" -&gt; "BUY",
+  "OrderQty" -&gt; "4000",
+  "OrdType" -&gt; "LIMIT",
+  "TimeInForce" -&gt; "DAY",
+  "Price" -&gt; "30",
+  "Rule80A" -&gt; "INDIVIDUAL_INVESTOR",
+  "TransactTime" -&gt; "20000809-18:20:32",
+  "CheckSum" -&gt; "061"
+)
+</pre>
+</div>
+
+<div class="slide-footer"></div>
+</section>
+</section>
+<section>
+<section id="slide-orge5d0a62" data-background="#FFFFFF" data-auto-animate>
+<h2 id="orge5d0a62">When to engage the type system</h2>
+<aside class="notes">
+<ul>
+<li>the subtext of this talk</li>
+<li>(the pretext&hellip; ?)</li>
+
+</ul>
+
+</aside>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org970e1f9">
+<h3 id="org970e1f9">The type system</h3>
+<aside class="notes">
+<ul>
+<li>Scala's type system is very powerful</li>
+<li>it should be used to your advantage, not disadvantage</li>
+<li>my philosophy is simple: "delay, delay, delay&hellip;"</li>
+
+</ul>
+
+</aside>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-orgcd22cff">
+<h4 id="orgcd22cff">Recap: we're still at <code>String</code></h4>
+<pre><font size="1" style="line-height: 125%"><code class="bash">
+fix: String = "8=FIX.4.2|9=153|35=D|49=BLP|56=SCHB|34=1|50=30737|97=Y|52=20000809-20:20:50|11=90001008|1=10030003|21=2|55=TESTA|54=1|38=4000|40=2|59=0|44=30|47=I|60=20000809-18:20:32|10=061|"
+
+</code></font></pre>
+
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre  class="fragment fade-in"  ><code class="amm" >(fix.split('|') zip toLinkedHashMap(fix)).foreach { (l, r) =&gt; println(f"${l}%20s | \"${r(0)}\" -&gt; \"${r(1)}\"") } 
+</code></pre>
+</div>
+</div>
+
+<pre><font size="1" style="line-height: 125%"><code class="bash fragment fade-in" data-line-numbers="-|20|9|3|-">           8=FIX.4.2 | "BeginString" -> "FIX.4.2"
+               9=153 | "BodyLength" -> "153"
+                35=D | "MsgType" -> "NEW_ORDER_SINGLE"
+              49=BLP | "SenderCompID" -> "BLP"
+             56=SCHB | "TargetCompID" -> "SCHB"
+                34=1 | "MsgSeqNum" -> "1"
+            50=30737 | "SenderSubID" -> "30737"
+                97=Y | "PossResend" -> "YES"
+52=20000809-20:20:50 | "SendingTime" -> "20000809-20:20:50"
+         11=90001008 | "ClOrdID" -> "90001008"
+          1=10030003 | "Account" -> "10030003"
+                21=2 | "HandlInst" -> "AUTOMATED_EXECUTION_INTERVENTION_OK"
+            55=TESTA | "Symbol" -> "TESTA"
+                54=1 | "Side" -> "BUY"
+             38=4000 | "OrderQty" -> "4000"
+                40=2 | "OrdType" -> "LIMIT"
+                59=0 | "TimeInForce" -> "DAY"
+               44=30 | "Price" -> "30"
+                47=I | "Rule80A" -> "INDIVIDUAL_INVESTOR"
+60=20000809-18:20:32 | "TransactTime" -> "20000809-18:20:32"
+              10=061 | "CheckSum" -> "061"
+</code></font></pre>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org9755575" data-transition="none">
+<h4 id="org9755575">Cherry-pick a FIX message</h4>
+<aside class="notes">
+<ul>
+<li>there are only certain things that we want from each message</li>
+<li>let's say we want the following</li>
+
+</ul>
+
+</aside>
+
+<pre><font size="1" style="line-height: 125%"><code class="bash fragment fade-in" data-line-numbers="1,3,4,5,6,20,9,13,14,15,18">           8=FIX.4.2 | "BeginString" -> "FIX.4.2"
+               9=153 | "BodyLength" -> "153"
+                35=D | "MsgType" -> "NEW_ORDER_SINGLE"
+              49=BLP | "SenderCompID" -> "BLP"
+             56=SCHB | "TargetCompID" -> "SCHB"
+                34=1 | "MsgSeqNum" -> "1"
+            50=30737 | "SenderSubID" -> "30737"
+                97=Y | "PossResend" -> "YES"
+52=20000809-20:20:50 | "SendingTime" -> "20000809-20:20:50"
+         11=90001008 | "ClOrdID" -> "90001008"
+          1=10030003 | "Account" -> "10030003"
+                21=2 | "HandlInst" -> "AUTOMATED_EXECUTION_INTERVENTION_OK"
+            55=TESTA | "Symbol" -> "TESTA"
+                54=1 | "Side" -> "BUY"
+             38=4000 | "OrderQty" -> "4000"
+                40=2 | "OrdType" -> "LIMIT"
+                59=0 | "TimeInForce" -> "DAY"
+               44=30 | "Price" -> "30"
+                47=I | "Rule80A" -> "INDIVIDUAL_INVESTOR"
+60=20000809-18:20:32 | "TransactTime" -> "20000809-18:20:32"
+              10=061 | "CheckSum" -> "061"
+</code></font></pre>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org2356605" data-transition="none">
+<h4 id="org2356605">Cherry-pick a FIX message</h4>
+<aside class="notes">
+<ul>
+<li>we want to pick out only the following fields</li>
+
+</ul>
+
+</aside>
+
+<pre><font size="1" style="line-height: 125%"><code class="bash">           8=FIX.4.2 | "BeginString" -> "FIX.4.2"
+                35=D | "MsgType" -> "NEW_ORDER_SINGLE"
+              49=BLP | "SenderCompID" -> "BLP"
+             56=SCHB | "TargetCompID" -> "SCHB"
+                34=1 | "MsgSeqNum" -> "1"
+52=20000809-20:20:50 | "SendingTime" -> "20000809-20:20:50"
+            55=TESTA | "Symbol" -> "TESTA"
+                54=1 | "Side" -> "BUY"
+             38=4000 | "OrderQty" -> "4000"
+               44=30 | "Price" -> "30"
+60=20000809-18:20:32 | "TransactTime" -> "20000809-18:20:32"
+</code></font></pre>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-orgfa07348" data-transition="none">
+<h4 id="orgfa07348">Cherry-pick a FIX message</h4>
+<aside class="notes">
+<ul>
+<li>there's a lot going on here</li>
+<li>we are formalizing the idea of capturing only the values that we want and we are imposing type on those values,
+as <i>we sit fit</i> (not as anyone else sees fit)</li>
+<li>values we know are present (note the <code>Longs</code>: these are required fields, so they can't be missing)</li>
+<li>values that we cannot assure are present (these are represented with <code>Option</code>: note also that we have specified
+<code>Price</code> as <code>Option[Double]</code>, as opposed to <code>Option[Int]</code>, say)</li>
+<li>values that are <i>never</i> present (<code>MISSINGFIELD</code>): we might mistakenly ask for a field because of a previously used spec</li>
+
+</ul>
+
+</aside>
+
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre   ><code class="amm" data-line-numbers='-|2-10|6,10|11-12|13'>case class D(
+    BeginString:String,               //            8=FIX.4.2 | "BeginString" -&gt; "FIX.4.2"
+    MsgType:String,                   //                 35=D | "MsgType" -&gt; "NEW_ORDER_SINGLE"
+    SenderCompID:String,              //               49=BLP | "SenderCompID" -&gt; "BLP"
+    TargetCompID:String,              //              56=SCHB | "TargetCompID" -&gt; "SCHB"
+    MsgSeqNum:Long,                   //                 34=1 | "MsgSeqNum" -&gt; "1"
+    SendingTime:String,               // 52=20000809-20:20:50 | "SendingTime" -&gt; "20000809-20:20:50"
+    Symbol:String,                    //             55=TESTA | "Symbol" -&gt; "TESTA"
+    Side:String,                      //                 54=1 | "Side" -&gt; "BUY"
+    OrderQty:Long,                    //              38=4000 | "OrderQty" -&gt; "4000"
+    Price:Option[Double],             //                44=30 | "Price" -&gt; "30"              
+    TransactTime:Option[String],      // 60=20000809-18:20:32 | "TransactTime" -&gt; "20000809-18:20:32"
+    MISSINGFIELD:Option[String]       //             &lt;&lt;&lt; NEVER PRESENT &gt;&gt;&gt;
+)
+</code></pre>
+</div>
+</div>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org18af10f" data-transition="none">
+<h4 id="org18af10f">Cherry-pick a FIX message</h4>
+<aside class="notes">
+<ul>
+<li>but dealing with type gets messy&#x2026;</li>
+<li>fast!</li>
+<li>firstly, we have to repeat everything (repetition is error prone)</li>
+<li>secondly, we may need to do weird hacks</li>
+<li>thirdly, we may end up with messy tricks (which are repeated over and over with many <code>case class</code> instances)</li>
+
+</ul>
+
+</aside>
+
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre  class="fragment fade-in"  ><code class="amm" data-line-numbers='-|2-13,19-39|23,27|28-30'>case class D(
+    BeginString:String,               //            8=FIX.4.2 | "BeginString" -&gt; "FIX.4.2"
+    MsgType:String,                   //                 35=D | "MsgType" -&gt; "NEW_ORDER_SINGLE"
+    SenderCompID:String,              //               49=BLP | "SenderCompID" -&gt; "BLP"
+    TargetCompID:String,              //              56=SCHB | "TargetCompID" -&gt; "SCHB"
+    MsgSeqNum:Long,                   //                 34=1 | "MsgSeqNum" -&gt; "1"
+    SendingTime:String,               // 52=20000809-20:20:50 | "SendingTime" -&gt; "20000809-20:20:50"
+    Symbol:String,                    //             55=TESTA | "Symbol" -&gt; "TESTA"
+    Side:String,                      //                 54=1 | "Side" -&gt; "BUY"
+    OrderQty:Long,                    //              38=4000 | "OrderQty" -&gt; "4000"
+    Price:Option[Double],             //                44=30 | "Price" -&gt; "30"              
+    TransactTime:Option[String],      // 60=20000809-18:20:32 | "TransactTime" -&gt; "20000809-18:20:32"
+    MISSINGFIELD:Option[String]       //             &lt;&lt;&lt; NEVER PRESENT &gt;&gt;&gt;
+)
+
+object D {
+    def apply(msg:LinkedHashMap[String,String]):D = {
+        D(
+            msg.getOrElse("BeginString", ""),          
+            msg.getOrElse("MsgType", ""),              
+            msg.getOrElse("SenderCompID", ""),
+            msg.getOrElse("TargetCompID", ""),
+            msg.getOrElse("MsgSeqNum", "").toLong,     // &lt;- absurd hack! avoids map.get returning an Option[Long]
+            msg.getOrElse("SendingTime", ""),
+            msg.getOrElse("Symbol", ""),
+            msg.getOrElse("Side", ""),   
+            msg.getOrElse("OrderQty", "").toLong,      // &lt;- absurd hack! avoids map.get returning an Option[Long] 
+            msg.get("Price").map(_.toDouble),
+            msg.get("TransactTime").map(_.toString),
+            msg.get("MISSINGFIELD").map(_.toString),
+        )
+    }
+}
+</code></pre>
+</div>
+</div>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org6d52112" data-transition="none">
+<h4 id="org6d52112">Cherry-pick a FIX message</h4>
+<aside class="notes">
+<ul>
+<li>but at least it works!</li>
+<li>here's the stuff we know to be present</li>
+<li>here's the stuff we wanted to be represented as <code>Long</code></li>
+<li>here's the optional stuff</li>
+
+</ul>
+
+</aside>
+
+<pre><font size="1" style="line-height: 125%"><code class="bash">
+fix: String = "8=FIX.4.2|9=153|35=D|49=BLP|56=SCHB|34=1|50=30737|97=Y|52=20000809-20:20:50|11=90001008|1=10030003|21=2|55=TESTA|54=1|38=4000|40=2|59=0|44=30|47=I|60=20000809-18:20:32|10=061|"
+
+</code></font></pre>
+
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre  class="fragment fade-in"  ><code class="amm" >D(toLinkedHashMap(fix))
+</code></pre>
+</div>
+</div>
+
+<pre><font size="1" style="line-height: 125%"><code class="bash fragment fade-in" data-line-numbers="-|2-10|6,10|11-13">res15: D = D(
+  BeginString = "FIX.4.2",
+  MsgType = "NEW_ORDER_SINGLE",
+  SenderCompID = "BLP",
+  TargetCompID = "SCHB",
+  MsgSeqNum = 1L,
+  SendingTime = "20000809-20:20:50",
+  Symbol = "TESTA",
+  Side = "BUY",
+  OrderQty = 4000L,
+  Price = Some(value = 30.0),
+  TransactTime = Some(value = "20000809-18:20:32"),
+  MISSINGFIELD = None
+)
+</code></font></pre>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-orgebf3922">
+<h3 id="orgebf3922">Is there a better way?</h3>
+<div class="outline-text-3" id="text-orgebf3922">
+</div>
+<div class="slide-footer"></div>
+</section>
+<section id="slide-orgd2165da">
+<h4 id="orgd2165da">Cherry-pick a FIX message</h4>
+<aside class="notes">
+<ul>
+<li>much easier if we could do the following!</li>
+<li>we specify the <code>case class</code>, as before</li>
+<li>but this time we have to apply some boiler plate magic which takes the rest of the pain away</li>
+
+</ul>
+
+</aside>
+
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre  class="fragment fade-in"  ><code class="amm" data-line-numbers='2-13|17,20-22'>case class D1(
+    BeginString:String,               //            8=FIX.4.2 | "BeginString" -&gt; "FIX.4.2"
+    MsgType:String,                   //                 35=D | "MsgType" -&gt; "NEW_ORDER_SINGLE"
+    SenderCompID:String,              //               49=BLP | "SenderCompID" -&gt; "BLP"
+    TargetCompID:String,              //              56=SCHB | "TargetCompID" -&gt; "SCHB"
+    MsgSeqNum:Long,                   //                 34=1 | "MsgSeqNum" -&gt; "1"
+    SendingTime:String,               // 52=20000809-20:20:50 | "SendingTime" -&gt; "20000809-20:20:50"
+    Symbol:String,                    //             55=TESTA | "Symbol" -&gt; "TESTA"
+    Side:String,                      //                 54=1 | "Side" -&gt; "BUY"
+    OrderQty:Long,                    //              38=4000 | "OrderQty" -&gt; "4000"
+    Price:Option[Double],             //                44=30 | "Price" -&gt; "30"              
+    TransactTime:Option[String],      // 60=20000809-18:20:32 | "TransactTime" -&gt; "20000809-18:20:32"
+    MISSINGFIELD:Option[String]       //             &lt;&lt;&lt; NEVER PRESENT &gt;&gt;&gt;
+)
+
+object D1 {
+    val classFields = classOf[D1].getDeclaredFields.map(_.getName).toList
+
+    def apply(msg:LinkedHashMap[String,String]):D1 = {
+        val seq = classFields.map(field =&gt; msg.getOrElse(field, ""))
+
+        Decoder.toProduct[D1](seq)
+    }
+
+}
+</code></pre>
+</div>
+</div>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org32a9eed" data-transition="none">
+<h4 id="org32a9eed">Cherry-pick a FIX message</h4>
+<aside class="notes">
+<ul>
+<li>and it works! (same as last time)</li>
+
+</ul>
+
+</aside>
+
+<pre><font size="1" style="line-height: 125%"><code class="bash">
+fix: String = "8=FIX.4.2|9=153|35=D|49=BLP|56=SCHB|34=1|50=30737|97=Y|52=20000809-20:20:50|11=90001008|1=10030003|21=2|55=TESTA|54=1|38=4000|40=2|59=0|44=30|47=I|60=20000809-18:20:32|10=061|"
+
+</code></font></pre>
+
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre  class="fragment fade-in"  ><code class="amm" >D1(toLinkedHashMap(fix))
+</code></pre>
+</div>
+</div>
+
+<pre><font size="1" style="line-height: 125%"><code class="bash fragment fade-in" data-line-numbers="-|2-10|6,10|11-13">res1: D1 = D1(
+  BeginString = "FIX.4.2",
+  MsgType = "NEW_ORDER_SINGLE",
+  SenderCompID = "BLP",
+  TargetCompID = "SCHB",
+  MsgSeqNum = 1L,
+  SendingTime = "20000809-20:20:50",
+  Symbol = "TESTA",
+  Side = "BUY",
+  OrderQty = 4000L,
+  Price = Some(value = 30.0),
+  TransactTime = Some(value = "20000809-18:20:32"),
+  MISSINGFIELD = None
+)
+</code></font></pre>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-org59597fd" data-transition="none">
+<h4 id="org59597fd">Type classes to the rescue!</h4>
+<aside class="notes">
+<ul>
+<li>how did we do it?</li>
+<li><code>Decoder</code> relies on the magic of Scala 3's <code>scala.deriving.Mirror</code></li>
+<li>type class defines how type instances behave</li>
+<li>note how <code>Long</code> is created from <code>String</code></li>
+<li>note how <code>Double</code> is created from <code>String</code></li>
+<li>all the "hackery" is now in one place and can be reused</li>
+<li>the last lines need a lecture all to themselves!</li>
+
+</ul>
+
+</aside>
+
+<div style="font-size: 50%;">
+<div class="org-src-container">
+
+<pre  class="fragment fade-in"  ><code class="amm" data-line-numbers='2|19,20|25,26|41-48'>// Source: based on https://github.com/yummydum/scala3Practice/blob/main/src/main/scala/myutils/utils.scala
+import scala.deriving.Mirror
+
+object Decoder {
+    type Row = Seq[String]
+
+    trait FieldDecoder[A]:
+        def decodeField(a: String): A
+
+    trait RowDecoder[A &lt;: Tuple]:
+        def decodeRow(a: Row): A
+
+    given FieldDecoder[Int] with
+        def decodeField(x: String) = x.toInt
+
+    given FieldDecoder[Boolean] with
+        def decodeField(x: String) = x.toBoolean
+
+    given FieldDecoder[Long] with
+        def decodeField(x: String) = x.toLong
+
+    given FieldDecoder[Double] with
+        def decodeField(x: String) = x.toDouble
+
+    given fdod:FieldDecoder[Option[Double]] with
+        def decodeField(x: String) = if x.length &gt; 0 then Some(x.toDouble) else None
+
+    given FieldDecoder[String] with
+        def decodeField(x: String) = x
+
+    given fdos:FieldDecoder[Option[String]] with
+        def decodeField(x: String) = if x.length &gt; 0 then Some(x) else None
+
+    given RowDecoder[EmptyTuple] with
+        def decodeRow(row: Row) = EmptyTuple
+
+    // Type parameter :
+    //     H: FieldDecoder, T &lt;: Tuple: RowDecoder
+    // Given instance for :
+    //     RowDecoder[H *: T]
+    given [H: FieldDecoder, T &lt;: Tuple: RowDecoder]: RowDecoder[H *: T] with
+        def decodeRow(row: Row) = {
+            summon[FieldDecoder[H]].decodeField(row.head) *: summon[RowDecoder[T]]
+            .decodeRow(row.tail)
+        }
+
+    def toProduct[P](row: Row)(using p: Mirror.ProductOf[P], d: RowDecoder[p.MirroredElemTypes]): P =
+        p.fromProduct(d.decodeRow(row))
+}
+</code></pre>
+</div>
+</div>
+
+<div class="slide-footer"></div>
+</section>
+<section id="slide-orgbdab287">
+<h4 id="orgbdab287">Parsimony of Scala</h4>
+<div class="fragment fade-in" style="font-size: 70%;">
+<ul>
+<li>the examples in this talk amount to a mere
+
+<ul>
+<li><p>
+229 lines of code
+</p>
+
+<div class="org-src-container">
+
+<pre   ><code class="bash" >wc -l functions.sc
+</code></pre>
+</div>
+
+<pre class="example">
+229 functions.sc
+</pre></li>
+
+<li>the core functional code is only about 1/2 of that</li>
+
+</ul></li>
+
+<li>the basis of <strong style="color:blue"><code>six</code></strong>  - a Scala package I'm writing 
+
+<ul>
+<li><i>i.e.</i> <strong style="color:blue"><code>S</code></strong>cala
+F<strong style="color:blue"><code>ix</code></strong></li>
+
+<li>watch out for it at: <a href="https://github.com/tharte/six">https://github.com/tharte/six</a></li>
+
+</ul></li>
+
+</ul>
+</div>
+<div class="slide-footer"></div>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/highlight/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/math/math.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealNotes, RevealHighlight, RevealMath],
+slideNumber:true
+});
+
+</script>
+</body>
+</html>
