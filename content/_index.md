@@ -6,6 +6,6 @@ Over the years, the conference formerly known as R/Finance has included work con
 
 Once again, we are planning to partner with [PyData Chicago](https://www.meetup.com/pydatachi/) to kick off the conference on the evening of Thursday, October 22nd. A series of relevant talks on quantitative finance will be presented, followed by an opportunity to sample Chicago's vibrant nightlife.
 
-**The [osQF 2026 Call For Presentations]([https://go.uic.edu/osQFCFP "osQF 2026"](https://web.cvent.com/event/953a51a4-3246-4725-98e2-8e43e62ddfd9/summary) is open!**
+**The [osQF 2026 Call For Presentations]([https://go.uic.edu/osQFCFP "osQF 2026"](https://web.cvent.com/event/953a51a4-3246-4725-98e2-8e43e62ddfd9/summary)) is open!**
 
 If you work at the intersection of open source and finance, we want to hear from you. Submissions are accepted on a rolling basis and are due by **Friday, July 24th, 2026**.
