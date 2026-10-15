@@ -8,7 +8,8 @@ package authors, finance industry practitioners, and finance professors.
 Inspired by popular workshops and summer schools about "R in Finance" held by 
 Diethelm Würtz at Meielisalp in the Swiss mountains, the inaugural R/Finance 
 conference took place at the Chicago campus of the University of Illinois (UIC) 
-in April 2009. 
+in April 2009. The next meeting is Friday & Saturday, April 23-24, 2027, presented by UIC Business.
+
 
 From its humble beginning, the conference has maintained the single-track 
 presentation model. With presentations by some of the most knowledgeable 
