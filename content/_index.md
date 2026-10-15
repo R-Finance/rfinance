@@ -1,13 +1,10 @@
-**osQF 2025 Was a Success — See You Next Year!**
+**The 18th annual meeting for applied finance with open-source tools, formerly R/Finance, at UIC Business, April 23-24, 2027.**
 
-Thank you to everyone who joined us for the 2025 Open Source Quantitative Finance (osQF) Conference! From cutting-edge tools to real-world case studies, this year's event showcased the best in open source innovation for quantitative finance.
+<a class="btn btn-primary" href="https://web.cvent.com/event/12f06d66-dcb8-4269-9268-1801607579fd/summary">Register</a>
+<a class="btn btn-default" href="/cfp/">Call for Presenters</a>
 
-osQF is where developers, quants, financial engineers, and analysts from around the world come together to share practical techniques, build connections, and push the boundaries of what's possible with open source software in finance. Topics include advanced risk tools, decentralized finance, econometrics, high-performance computing, market microstructure, portfolio management, and time series analysis.
+osQF is a 1.3-day, single-track conference for academics and practitioners who build financial models, portfolios, risk systems, and trading tools with open-source languages and libraries. We meet at the University of Illinois Chicago, presented by UIC Business.
 
-We're already gearing up for next year's conference — and the call for presentations will open soon. If you work at the intersection of open source and quant finance, we want to hear from you.
+Kick off with PyData Chicago on the evening of Friday, April 23, then join Friday-Saturday sessions covering AI, risk, DeFi, econometrics, high-performance computing, market microstructure, portfolio management, and time series, always through an open-source lens.
 
-Learn more about osQF on the [About](/about) page.
-
-Catch up on what you missed in the Archive
-
-Stay tuned — exciting things ahead!
+Learn more on the [About](/about/) page, or catch up on past meetings in the [Archive](/archive/).

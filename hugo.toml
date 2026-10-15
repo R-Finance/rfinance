@@ -22,22 +22,28 @@ theme = ["hugo-rfinance-theme", "hugo-universal-theme"]
     weight = 3
 
 [[menu.main]]
+    identifier = "register"
+    name = "Register"
+    url  = "https://web.cvent.com/event/12f06d66-dcb8-4269-9268-1801607579fd/summary"
+    weight = 4
+
+[[menu.main]]
     identifier = "sponsorship"
     name = "Sponsors"
     url  = "/sponsors/"
-    weight = 4
+    weight = 5
 
 [[menu.main]]
     identifier = "coc"
     name = "Code of Conduct"
     url  = "/coc/"
-    weight = 5
+    weight = 6
 
 [[menu.main]]
     identifier = "diversity"
     name = "Diversity"
     url  = "/diversity/"
-    weight = 5
+    weight = 7
 
 [params.welcome]
     title = "Open Source Quantitative Finance"
@@ -51,3 +57,8 @@ theme = ["hugo-rfinance-theme", "hugo-universal-theme"]
 [params]
     style = "blue"
     logo = "img/transparent-logo.png"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
